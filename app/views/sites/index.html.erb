@@ -1,0 +1,9 @@
+<ul>
+  <% @sites.each do |site| %>
+    <li>Сайт: <%= link_to site.name, site_feeds_path(site) %></li>
+    <li>URL: <%= site.url %></li>
+    <li><%= link_to 'edit', edit_site_path(site) %> <%= link_to 'del', site, method: :delete  %></li>
+    <br />
+  <% end %>
+</ul>
+<%= link_to "Add", new_site_path %>

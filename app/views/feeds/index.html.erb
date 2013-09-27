@@ -1,0 +1,7 @@
+<h3>Сайт: <%= @site.name %> <%= @site.url %></h3>
+<% @feeds.each do |feed| %>
+  <p>Title: <%= link_to feed.title, feed.url %></p>
+  <p><%= raw feed.description %></p>
+  <br />
+<% end %>
+</ul>
