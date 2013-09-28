@@ -14,19 +14,26 @@ namespace :rss_feed do
           p item.link
           title = HTMLEntities.new.decode item.title
           description = HTMLEntities.new.decode item.description
-          site.feeds.create! title: title, url: item.link, description: description
+          feed = site.feeds.create! title: title, url: item.link, description: description
+          go_body(feed)
         end
       end
     end
   end
 
-  desc "Получение body"
-  task body: :environment do
-    Feed.all.each do |feed|
-      unless feed.body
-        p feed.url
-
+  def go_body(feed)
+    require 'open-uri'
+    p feed
+    unless feed.body
+      feed.body = ''
+      doc = Nokogiri::HTML open(feed.url)
+      doc.search('div p').each do |p|
+        if p.search('script').to_s == ''
+          p p
+          feed.body = feed.body + p.to_s
+        end
       end
+      feed.save!
     end
   end
 

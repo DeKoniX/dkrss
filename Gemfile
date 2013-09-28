@@ -12,6 +12,7 @@ group :default do
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
+  gem 'nokogiri'
   gem 'rails', '4.0.0'
   gem 'simple-rss'
   gem 'simple_form'
