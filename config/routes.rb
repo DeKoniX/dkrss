@@ -1,4 +1,5 @@
 Dkrss::Application.routes.draw do
+  root 'sites#index'
   resources :sites do
     resources :feeds
   end

@@ -8,7 +8,6 @@ namespace :rss_feed do
       p '######'
       rss = SimpleRSS.parse open(site.url)
       rss.items.each do |item|
-        print find_item(item, site)
         if find_item(item, site)
           p item.title
           p item.link
@@ -23,13 +22,11 @@ namespace :rss_feed do
 
   def go_body(feed)
     require 'open-uri'
-    p feed
     unless feed.body
       feed.body = ''
       doc = Nokogiri::HTML open(feed.url)
       doc.search('div p').each do |p|
         if p.search('script').to_s == ''
-          p p
           feed.body = feed.body + p.to_s
         end
       end

@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: addb7143365f97f938e3bdbb2ccfc52591230eda
+  branch: 3.0.0
+  specs:
+    anjlab-bootstrap-rails (3.0.0.rc2)
+      railties (>= 3.0)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +38,8 @@ GEM
       rake
     arel (4.0.0)
     atomic (1.1.14)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -120,12 +131,15 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   annotate
+  bootstrap-will_paginate
   coffee-rails
   htmlentities
   inherited_resources
@@ -140,3 +154,4 @@ DEPENDENCIES
   therubyracer
   turbolinks
   uglifier
+  will_paginate
