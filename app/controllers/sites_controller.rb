@@ -1,4 +1,4 @@
-class SitesController < ApplicationController
+class SitesController < InheritedResources::Base
   def create
     create! { sites_path }
   end

@@ -3,8 +3,8 @@ class CreateFeeds < ActiveRecord::Migration
     create_table :feeds do |t|
       t.string :title
       t.string :url
-      t.string :description
-      t.string :body
+      t.text :description
+      t.text :body
       t.references :site
 
       t.timestamps

@@ -1,5 +1,5 @@
 namespace :rss_feed do
-  desc "Заполнение базы"
+  desc "Insert table rss"
   task go: :environment do
     require 'open-uri'
     Site.all.each do |site|

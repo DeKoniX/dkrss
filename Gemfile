@@ -23,8 +23,18 @@ group :default do
   gem 'sqlite3'
   gem 'turbolinks'
   gem 'will_paginate'
+  gem 'unicorn'
 end
 
 group :development do
   gem 'annotate'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'capistrano_colors'
+  gem 'capistrano-unicorn'
+end
+
+group :production do
+  gem 'activerecord-postgresql-adapter'
+  gem 'pg'
 end
