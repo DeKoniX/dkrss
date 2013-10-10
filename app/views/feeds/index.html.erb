@@ -1,6 +1,8 @@
 <h3>Сайт: <%= @site.name %> <%= @site.url %></h3>
 <% @feeds.each do |feed| %>
   <p>Title: <%= link_to feed.title, site_feed_path(@site, feed) %></p>
+  <%#ToDo: Очень мелко%>
+  <p><%= link_to 'url', feed.url %></p>
   <p><%= raw feed.description %></p>
   <br />
 <% end %>
