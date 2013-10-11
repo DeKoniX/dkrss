@@ -12,6 +12,7 @@ group :default do
                                 :github => 'anjlab/bootstrap-rails',
                                 :branch => '3.0.0'
   gem 'bootstrap-will_paginate'
+  gem 'carrierwave'
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
@@ -22,8 +23,8 @@ group :default do
   gem 'simple_form'
   gem 'sqlite3'
   gem 'turbolinks'
-  gem 'will_paginate'
   gem 'unicorn'
+  gem 'will_paginate'
 end
 
 group :development do
