@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010114816) do
+ActiveRecord::Schema.define(version: 20131013100448) do
 
   create_table "feed_images", force: true do |t|
-    t.string   "image"
+    t.text     "image",      limit: 255
     t.integer  "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
