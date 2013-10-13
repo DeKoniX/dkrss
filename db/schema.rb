@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013100448) do
+ActiveRecord::Schema.define(version: 20131013141819) do
 
   create_table "feed_images", force: true do |t|
     t.text     "image",      limit: 255
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20131013100448) do
 
   create_table "feeds", force: true do |t|
     t.string   "title"
-    t.string   "url"
+    t.text     "url",         limit: 255
     t.text     "description"
     t.text     "body"
     t.integer  "site_id"

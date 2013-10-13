@@ -15,9 +15,7 @@ namespace :rss_feed do
           p item.link
           title = HTMLEntities.new.decode item.title
           description = HTMLEntities.new.decode item.description
-          link = HTMLEntities.new.decode item.link
-          link = link[0..254]
-          feed = site.feeds.create! title: title, url: link, description: description
+          feed = site.feeds.create! title: title, url: item.link, description: description
           go_body(feed)
           go_img(feed)
         end
