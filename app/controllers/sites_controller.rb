@@ -1,4 +1,6 @@
 class SitesController < InheritedResources::Base
+  http_basic_authenticate_with name: "admin", password: "qaz12345", except: :index
+
   def create
     create! { sites_path }
   end
