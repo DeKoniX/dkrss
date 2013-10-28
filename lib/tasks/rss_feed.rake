@@ -30,22 +30,17 @@ namespace :rss_feed do
     img.each do |i|
       image = i.attributes['data-original']
       if image == nil
-        image = i.attributes['src'].value
+        url = i.attributes['src'].value
       else
-        image = image.value
+        url = image.value
       end
       begin
-        save_image = feed.feed_images.create! image: open(image)
+        save_image = feed.feed_images.create! image: open(url)
       rescue
         p 'ASD'
       else
-        image = save_image.image.url
-        im = i.attributes['data-original']
-        if im == nil
-          i.attributes['src'].value = image
-        else
-          i.attributes['data-original'].value = image
-        end
+        url = save_image.image.url
+        i.attributes['src'].value = url
       end
     end
     feed.body = doc.to_html
