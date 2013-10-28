@@ -1,7 +1,7 @@
 <% @feeds.each do |feed| %>
   <% site = Site.find feed.site_id %>
   <p>Site: <%= link_to site.name, site_path(site) %></p>
-  <p>Title: <%= link_to feed.title, site_feed_path(@site, feed) %></p>
+  <p>Title: <%= link_to feed.title, site_feed_path(site, feed) %></p>
   <%#ToDo: Очень мелко%>
   <p><%= link_to 'url', feed.url %></p>
   <p><%= raw feed.description %></p>
