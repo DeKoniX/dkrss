@@ -15,7 +15,13 @@ namespace :rss_feed do
           p item.link
           title = HTMLEntities.new.decode item.title
           description = HTMLEntities.new.decode item.description
-          feed = site.feeds.create! title: title, url: item.link, description: description
+          if item.updated
+            date = item.updated
+          elsif item.pubDate
+            date = item.pubDate
+          end
+          p date
+          feed = site.feeds.create! title: title, url: item.link, description: description, date: date
           go_body(feed)
           go_img(feed)
         end

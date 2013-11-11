@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013141819) do
+ActiveRecord::Schema.define(version: 20131111074649) do
 
   create_table "feed_images", force: true do |t|
     t.text     "image",      limit: 255
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131013141819) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date"
   end
 
   create_table "sites", force: true do |t|
