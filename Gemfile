@@ -13,6 +13,7 @@ group :default do
                                 :branch => '3.0.0'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
+  gem 'devise'
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
