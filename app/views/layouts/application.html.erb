@@ -12,22 +12,34 @@
         <%= link_to "DKRSS", root_url, class: "navbar-brand" %>
       </div>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toogle" data-toggle="dropdown">Сайты <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <% Site.all.each do |site| %>
-                <li><%= link_to site.name, site_feeds_url(site) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><%= link_to "Настройка сайтов", sites_url %></li>
-        </ul>
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav">
+            <% unless current_user.sites == [] %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toogle" data-toggle="dropdown">Сайты <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <% current_user.sites.each do |site| %>
+                    <li><%= link_to site.name, site_feeds_url(site) %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+              <li><%= link_to "Настройка сайтов", sites_url %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>
+            <li><%= link_to "Выход", destroy_user_session_path, method: "delete" %></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Вход", new_user_session_path %></li>
+          </ul>
+        <% end %>
       </div>
     </nav>
     <div class="page-header visible-desktop">
 
-  </div>
+    </div>
     <div class="container">
       <div class="page-header">
         <%= yield %>

@@ -1,10 +1,14 @@
-<% @feeds.each do |feed| %>
-  <% site = Site.find feed.site_id %>
-  <p>Site: <%= link_to site.name, site_feeds_path(site) %></p>
-  <p>Title: <%= link_to feed.title, site_feed_path(site, feed) %></p>
-  <%#ToDo: Очень мелко%>
-  <p><%= link_to 'url', feed.url %></p>
-  <p><%= raw feed.description %></p>
-  <hr>
+<% if user_signed_in? %>
+  <% @feeds.each do |feed| %>
+    <% site = Site.find feed.site_id %>
+    <p>Site: <%= link_to site.name, site_feeds_path(site) %></p>
+    <p>Title: <%= link_to feed.title, site_feed_path(site, feed) %></p>
+    <%#ToDo: Очень мелко%>
+    <p><%= link_to 'url', feed.url %></p>
+    <p><%= raw feed.description %></p>
+    <hr>
+  <% end %>
+  <%= will_paginate @feeds %>
+<% else %>
+  <h2>Добро пожаловать на dkrss!</h2>
 <% end %>
-<%= will_paginate @feeds %>

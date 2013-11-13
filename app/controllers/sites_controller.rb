@@ -1,12 +1,25 @@
 class SitesController < InheritedResources::Base
-  http_basic_authenticate_with name: "admin", password: "qaz12345", except: :index
+  def index
+    @sites = current_user.sites
+  end
 
   def create
     create! { sites_path }
+    @site.user_id = current_user.id
+    @site.save!
   end
 
   def edit
-    edit! { sites_path }
+    @site = Site.find(params[:id])
+    unless @site.user_id == current_user.id
+      redirect_to sites_path
+    end
+  end
+
+  def update
+    update! { sites_path }
+    @site.user_id = current_user.id
+    @site.save!
   end
 
   def permitted_params
