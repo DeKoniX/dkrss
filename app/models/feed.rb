@@ -15,4 +15,5 @@
 class Feed < ActiveRecord::Base
   has_many :feed_images
   belongs_to :sites
+  belongs_to :users
 end
