@@ -1,0 +1,7 @@
+<h2>Ваши favorits</h2>
+<%= link_to "Добавить", new_favorit_path %>
+<% @favorits.each do |favorit| %>
+  <p>Title: <%= favorit.name %></p>
+  <p><%= raw favorit.description %></p>
+  <hr>
+<% end %>

@@ -24,4 +24,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :sites
   has_many :feeds, through: :sites
+  has_many :favorits
 end

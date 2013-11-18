@@ -1,6 +1,7 @@
 Dkrss::Application.routes.draw do
   devise_for :users
   root 'index#index'
+  resources :favorits
   resources :sites do
     resources :feeds
   end

@@ -1,7 +1,6 @@
 class FeedsController < InheritedResources::Base
   belongs_to :site
   def index
-
     @site = Site.find(params[:site_id])
     #index!
     @feeds = @site.feeds.paginate(:page => params[:page], :order => "date DESC", :per_page => 10)

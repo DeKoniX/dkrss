@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112195006) do
+ActiveRecord::Schema.define(version: 20131113154511) do
+
+  create_table "favorits", force: true do |t|
+    t.string   "url",                         null: false
+    t.string   "name",                        null: false
+    t.text     "body"
+    t.text     "description"
+    t.boolean  "link",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "favorits", ["user_id"], name: "index_favorits_on_user_id"
 
   create_table "feed_images", force: true do |t|
     t.text     "image",      limit: 255
