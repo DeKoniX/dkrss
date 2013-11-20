@@ -10,6 +10,6 @@ class FavoritsController < InheritedResources::Base
   end
 
   def permitted_params
-      params.permit(:favorit => [:name, :url, :description, :link])
+      params.permit(:favorit => [:name, :url, :description])
   end
 end
