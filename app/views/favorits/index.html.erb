@@ -1,7 +1,9 @@
-<h2>Ваши favorits</h2>
-<%= link_to "Добавить", new_favorit_path %>
+<h1>Ваше избранное</h1>
+<%= link_to "Добавить новое", new_favorit_path %>
 <% @favorits.each do |favorit| %>
-  <p>Title: <%= favorit.name %></p>
-  <p><%= raw favorit.description %></p>
   <hr>
+  <h3><%= link_to favorit.name, favorit_path(favorit) %></h3>
+  <p><%= link_to favorit.url, favorit.url %></p>
+  <p><%= raw favorit.description %></p>
+  <p><%= link_to "Редактировать", edit_favorit_path(favorit) %></p>
 <% end %>
