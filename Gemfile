@@ -25,6 +25,7 @@ group :default do
   gem 'sqlite3'
   gem 'turbolinks'
   gem 'unicorn'
+  gem 'unicorn-worker-killer'
   gem 'will_paginate'
 end
 
