@@ -18,6 +18,8 @@ set :repository,  "https://github.com/DeKoniX/dkrss.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
+set :rvm_ruby_string, 'ruby-2.0.0-p247@rss'
+
 role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
