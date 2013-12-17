@@ -2,6 +2,7 @@ Dkrss::Application.routes.draw do
   devise_for :users
   root 'index#index'
   resources :favorits
+  post "favorit/add" => "feeds#add_favorit"
   resources :sites do
     resources :feeds
   end
