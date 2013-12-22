@@ -14,7 +14,9 @@
 #
 
 class Feed < ActiveRecord::Base
-  has_many :feed_images
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  has_many :feed_images, dependent: :destroy
   belongs_to :sites
   belongs_to :users
 end

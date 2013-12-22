@@ -40,6 +40,7 @@ GEM
       rake
     arel (4.0.0)
     atomic (1.1.14)
+    babosa (0.3.11)
     bcrypt-ruby (3.1.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
@@ -72,6 +73,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.1)
+    friendly_id (5.0.2)
+      activerecord (~> 4.0.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -185,6 +188,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   anjlab-bootstrap-rails!
   annotate
+  babosa
   bootstrap-will_paginate
   capistrano
   capistrano-unicorn
@@ -192,6 +196,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   devise
+  friendly_id (~> 5.0.0)
   htmlentities
   inherited_resources
   jbuilder (~> 1.2)

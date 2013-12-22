@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113154511) do
+ActiveRecord::Schema.define(version: 20131222105915) do
 
   create_table "favorits", force: true do |t|
     t.string   "url",                         null: false
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 20131113154511) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "slug"
   end
 
+  add_index "favorits", ["slug"], name: "index_favorits_on_slug", unique: true
   add_index "favorits", ["user_id"], name: "index_favorits_on_user_id"
 
   create_table "feed_images", force: true do |t|
@@ -42,7 +44,10 @@ ActiveRecord::Schema.define(version: 20131113154511) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date"
+    t.string   "slug"
   end
+
+  add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true
 
   create_table "sites", force: true do |t|
     t.string   "name"
@@ -50,8 +55,10 @@ ActiveRecord::Schema.define(version: 20131113154511) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "slug"
   end
 
+  add_index "sites", ["slug"], name: "index_sites_on_slug", unique: true
   add_index "sites", ["user_id"], name: "index_sites_on_user_id"
 
   create_table "users", force: true do |t|

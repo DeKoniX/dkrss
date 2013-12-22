@@ -11,9 +11,11 @@ group :default do
   gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                                 :github => 'anjlab/bootstrap-rails',
                                 :branch => '3.0.0'
+  gem 'babosa'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
   gem 'devise'
+  gem 'friendly_id', '~> 5.0.0'
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'

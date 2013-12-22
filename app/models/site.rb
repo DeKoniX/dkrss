@@ -11,6 +11,8 @@
 #
 
 class Site < ActiveRecord::Base
-  has_many :feeds
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  has_many :feeds, dependent: :destroy
   belongs_to :users
 end
