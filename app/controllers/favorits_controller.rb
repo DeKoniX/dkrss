@@ -1,6 +1,6 @@
 class FavoritsController < InheritedResources::Base
   def index
-    @favorits = current_user.favorits
+    @favorits = current_user.favorits.paginate(:page => params[:page], :order => "updated_at DESC", :per_page => 10)
   end
 
   def create

@@ -7,3 +7,4 @@
   <p><%= raw favorit.description %></p>
   <p><%= link_to "Редактировать", edit_favorit_path(favorit) %></p>
 <% end %>
+<%= will_paginate @favorits %>
