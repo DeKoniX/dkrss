@@ -5,6 +5,9 @@
   <h3><%= link_to favorit.name, favorit_path(favorit) %></h3>
   <p><%= link_to favorit.url, favorit.url %></p>
   <p><%= raw favorit.description %></p>
-  <p><%= link_to "Редактировать", edit_favorit_path(favorit) %></p>
+  <p>
+    <%= link_to "Редактировать", edit_favorit_path(favorit) %>
+    <%= link_to "Удалить", favorit, method: :delete %>
+  </p>
 <% end %>
 <%= will_paginate @favorits %>
