@@ -1,5 +1,5 @@
 <ul>
-  <% @sites.each do |site| %>
+  <% @sites.sort_by(&:name).each do |site| %>
     <li class="list-group-item">Сайт: <%= link_to site.name, site_feeds_path(site) %></li>
     <li class="list-group-item">URL: <%= site.url %></li>
     <li class="list-group-item"><%= link_to 'Редактировать', edit_site_path(site) %> <%= link_to 'Удалить', site, method: :delete  %></li>

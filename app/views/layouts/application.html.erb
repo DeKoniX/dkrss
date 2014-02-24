@@ -18,7 +18,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toogle" data-toggle="dropdown">Сайты <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <% current_user.sites.each do |site| %>
+                  <% current_user.sites.sort_by(&:name).each do |site| %>
                     <li><%= link_to site.name, site_feeds_url(site) %></li>
                   <% end %>
                 </ul>
