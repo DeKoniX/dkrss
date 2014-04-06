@@ -8,7 +8,12 @@ namespace :rss_feed do
       p site.name
       p site.url
       p '######'
-      rss = SimpleRSS.parse open(site.url)
+      begin
+        rss = SimpleRSS.parse open(site.url)
+      rescue
+        puts "ERR, #{site.name}, #{site.url}"
+        break
+      end
       rss.items.each do |item|
         if find_item(item, site)
           p item.title
