@@ -11,4 +11,13 @@ class FeedsController < InheritedResources::Base
     @favorit = current_user.favorits.create! url: @feed.url, name: @feed.title, body: @feed.body, description: @feed.description
     redirect_to favorits_path
   end
+  def get_rss
+    @user = User.find_by rsskey: params[:sha]
+
+    @feeds = @user.feeds.all(:order => "created_at DESC", :limit => 20)
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
 end
