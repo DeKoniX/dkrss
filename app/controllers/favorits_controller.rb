@@ -8,6 +8,16 @@ class FavoritsController < InheritedResources::Base
     @favorit.user_id = current_user.id
     @favorit.save!
   end
+  
+  def get_rss
+    @user = User.find_by rsskey: params[:sha]
+
+    @favorits = @user.favorits.all(:order => "created_at DESC", :limit => 30)
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
 
   def permitted_params
       params.permit(:favorit => [:name, :url, :description])
