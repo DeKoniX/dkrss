@@ -10,7 +10,7 @@ xml.rss :version => "2.0" do
         xml.title favorit.name
         xml.description favorit.description
         xml.pubDate favorit.created_at.to_s(:rfc822)
-        xml.link favorit_path(favorit)
+        xml.link favorit_url(favorit)
       end
     end
   end
