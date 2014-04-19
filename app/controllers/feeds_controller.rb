@@ -14,7 +14,7 @@ class FeedsController < InheritedResources::Base
   def get_rss
     @user = User.find_by rsskey: params[:sha]
 
-    @feeds = @user.feeds.all(:order => "created_at DESC", :limit => 20)
+    @feeds = @user.feeds.all(:order => "created_at DESC", :limit => 60)
 
     respond_to do |format|
       format.rss { render :layout => false }
