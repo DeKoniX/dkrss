@@ -12,7 +12,12 @@ class FavoritsController < InheritedResources::Base
   def get_rss
     @user = User.find_by rsskey: params[:sha]
 
-    @favorits = @user.favorits.all(:order => "created_at DESC", :limit => 30)
+    @favorits = []
+    @user.favorits.all(:order => "created_at DESC", :limit => 30).each do |favorit|
+      unless favorit.body.nil?
+        @favorits << favorit
+      end
+    end
 
     respond_to do |format|
       format.rss { render :layout => false }
