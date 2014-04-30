@@ -11,6 +11,10 @@ class FeedsController < InheritedResources::Base
     @favorit = current_user.favorits.create! url: @feed.url, name: @feed.title, body: @feed.body, description: @feed.description
     redirect_to favorits_path
   end
+  def show
+    show!
+    @site = Site.find(@feed.site_id)
+  end
   def get_rss
     @user = User.find_by rsskey: params[:sha]
 

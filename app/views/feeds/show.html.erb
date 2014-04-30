@@ -1,3 +1,4 @@
 <h2><%= link_to @feed.title, @feed.url %></h2>
-<h4><%= link_to 'К списку', site_feeds_path(@site) %></h4>
+<h3><%= link_to @site.name, site_feeds_path(@site) %></h3>
+<h5><%= link_to 'К списку', root_path %></h5>
 <%= raw @feed.body %>
