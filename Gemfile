@@ -37,6 +37,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'capistrano_colors'
   gem 'capistrano-unicorn'
+  gem 'rails-erd'
 end
 
 group :production do
