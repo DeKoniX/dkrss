@@ -24,4 +24,14 @@ class FeedsController < InheritedResources::Base
       format.rss { render :layout => false }
     end
   end
+  def get_feed_rss
+    @user = User.find_by rsskey: params[:sha]
+    @site = Site.find(params[:site_id])
+
+    @feeds = @site.feeds(order: "created_at DESC", limit: 60)
+
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end
 end

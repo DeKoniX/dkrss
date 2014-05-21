@@ -1,4 +1,4 @@
-<h3>Сайт: <%= @site.name %> <%= @site.url %></h3>
+<h3>Сайт: <%= @site.name %> <%= @site.url %> <%= link_to 'rss', site_feed_rss_path(@site, current_user.rsskey) %></h3>
 <% @feeds.each do |feed| %>
   <p>Title: <%= link_to feed.title, site_feed_path(@site, feed) %></p>
   <%#ToDo: Очень мелко%>
