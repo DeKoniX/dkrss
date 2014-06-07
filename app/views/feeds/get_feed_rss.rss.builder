@@ -5,7 +5,7 @@ xml.rss :version => "2.0" do
     xml.description "RSS list #{@site.name}"
     xml.link site_feeds_path(@site)
 
-    for feed in @feeds
+    @feeds.each do |feed|
       xml.item do
         xml.title feed.title
         xml.description feed.description
