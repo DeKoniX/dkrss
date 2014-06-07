@@ -22,6 +22,15 @@ class SitesController < InheritedResources::Base
     @site.save!
   end
 
+  def get_opml
+    @user = User.find_by rsskey: params[:sha]
+    @sites = @user.sites
+
+    respond_to do |format|
+      format.opml { render :layout => false }
+    end
+  end
+
   def permitted_params
       params.permit(:site => [:name, :url])
   end

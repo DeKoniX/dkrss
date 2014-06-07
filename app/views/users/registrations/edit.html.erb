@@ -27,6 +27,9 @@
 <p>
   <%= link_to "Ваше избранное", favorits_rss_path(current_user.rsskey) %>
 </p>
+<p>
+  <%= link_to 'Ваш opml файл', sites_opml_path(current_user.rsskey) %>
+</p>
 
 <h3>Удалить аккаунт</h3>
 
