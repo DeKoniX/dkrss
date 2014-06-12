@@ -60,7 +60,7 @@ namespace :rss_feed do
 
   def go_body(feed)
     require 'open-uri'
-    f = ['article', 'div#content', 'div.content']
+    f = ['article', 'div#content', 'div.content', 'div.yab-article']
     unless feed.body
       feed.body = ''
       doc = open(feed.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
