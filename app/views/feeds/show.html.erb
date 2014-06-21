@@ -1,5 +1,7 @@
 <h2><%= link_to @feed.title, @feed.url %></h2>
 <h3><%= link_to @site.name, site_feeds_path(@site) %></h3>
-<h4><%= link_to 'Add_favorit', favorit_add_path(feed_id: @feed.id), method: :post %></h4>
+<% if user_signed_in? %>
+  <h4><%= link_to 'Add_favorit', favorit_add_path(feed_id: @feed.id), method: :post %></h4>
+<% end %>
 <h5><%= link_to 'К списку', root_path %></h5>
 <%= raw @feed.body %>
