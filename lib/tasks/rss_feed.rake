@@ -4,31 +4,35 @@ namespace :rss_feed do
     #Site.create! name: 'Lifehacker.ru', url: 'http://lifehacker.ru/feed/'
     ####
     require 'open-uri'
+    puts "#{Time.now}"
     Site.all.each do |site|
+      prop = false
       p site.name
       p site.url
       p '######'
       begin
         rss = SimpleRSS.parse open(site.url)
       rescue
-        puts "ERR, #{site.name}, #{site.url}"
-        break
+        puts "ERR, #{Time.now}, #{site.name}, #{site.url}"
+        prop = true
       end
-      rss.items.each do |item|
-        if find_item(item, site)
-          p item.title
-          p item.link
-          title = HTMLEntities.new.decode item.title
-          description = HTMLEntities.new.decode item.description
-          if item.updated
-            date = item.updated
-          elsif item.pubDate
-            date = item.pubDate
+      if !prop
+        rss.items.each do |item|
+          if find_item(item, site)
+            p item.title
+            p item.link
+            title = HTMLEntities.new.decode item.title
+            description = HTMLEntities.new.decode item.description
+            if item.updated
+              date = item.updated
+            elsif item.pubDate
+              date = item.pubDate
+            end
+            p date
+            feed = site.feeds.create! title: title, url: item.link, description: description, date: date
+            go_body(feed)
+            go_img(feed)
           end
-          p date
-          feed = site.feeds.create! title: title, url: item.link, description: description, date: date
-          go_body(feed)
-          go_img(feed)
         end
       end
     end
