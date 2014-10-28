@@ -8,26 +8,27 @@ group :assets do
 end
 
 group :default do
-  gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                                :github => 'anjlab/bootstrap-rails',
-                                :branch => '3.0.0'
+  #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+  #                              :github => 'anjlab/bootstrap-rails',
+  #                              :branch => '3.0.0'
+  #gem 'bootstrap-sass'
   gem 'babosa'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
   gem 'devise'
-  gem 'friendly_id', '~> 5.0.0'
+  gem 'friendly_id', '~> 5.0.4'
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
   gem 'nokogiri'
   gem 'rails', '4.0.0'
   gem 'sass-rails'
-  gem 'simple-rss'
   gem 'simple_form'
+  gem 'simple-rss'
   gem 'sqlite3'
   gem 'turbolinks'
-  gem 'unicorn'
   gem 'unicorn-worker-killer'
+  gem 'unicorn'
   gem 'will_paginate'
 end
 

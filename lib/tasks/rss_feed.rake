@@ -19,10 +19,10 @@ namespace :rss_feed do
       if !prop
         rss.items.each do |item|
           if find_item(item, site)
-            p item.title
-            p item.link
-            title = HTMLEntities.new.decode item.title
-            description = HTMLEntities.new.decode item.description
+            p item.title.force_encoding("UTF-8")
+            p item.link.force_encoding("UTF-8")
+            title = HTMLEntities.new.decode item.title.force_encoding("UTF-8")
+            description = HTMLEntities.new.decode item.description.force_encoding("UTF-8")
             if item.updated
               date = item.updated
             elsif item.pubDate
