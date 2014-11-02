@@ -21,8 +21,12 @@ namespace :rss_feed do
           if find_item(item, site)
             p item.title.force_encoding("UTF-8")
             p item.link.force_encoding("UTF-8")
-            title = HTMLEntities.new.decode item.title.force_encoding("UTF-8")
-            description = HTMLEntities.new.decode item.description.force_encoding("UTF-8")
+            unless item.description == nil
+              title = HTMLEntities.new.decode item.title.force_encoding("UTF-8")
+            end
+            unless item.description == nil
+              description = HTMLEntities.new.decode item.description.force_encoding("UTF-8")
+            end
             if item.updated
               date = item.updated
             elsif item.pubDate
