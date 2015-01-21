@@ -1,3 +1,4 @@
+<% @title = @feed.title %>
 <h2><%= link_to @feed.title, @feed.url %></h2>
 <h3><%= link_to @site.name, site_feeds_path(@site) %></h3>
 <% if user_signed_in? %>

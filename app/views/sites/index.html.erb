@@ -1,3 +1,4 @@
+<% @title = "Сайты" %>
 <ul>
   <% @sites.sort_by(&:name).each do |site| %>
     <li class="list-group-item">Сайт: <%= link_to site.name, site_feeds_path(site) %></li>
