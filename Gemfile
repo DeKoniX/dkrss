@@ -36,7 +36,7 @@ end
 group :development do
   gem 'annotate'
   gem 'capistrano'
-  gem 'rvm-capistrano'
+  gem 'rvm-capistrano', require: false
   gem 'capistrano_colors'
   gem 'capistrano-unicorn'
   gem 'rails-erd'

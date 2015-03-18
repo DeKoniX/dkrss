@@ -14,4 +14,13 @@ namespace :delete_old do
       end
     end
   end
+
+  desc "Удаление записей без даты"
+  task delete_no_data: :environment do
+    Feed.all.each do |feed|
+      if feed.date.nil?
+        feed.destroy
+      end
+    end
+  end
 end

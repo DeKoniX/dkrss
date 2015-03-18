@@ -11,7 +11,7 @@ namespace :rss_feed do
       p site.url
       p '######'
       begin
-        rss = SimpleRSS.parse open(site.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+        rss = SimpleRSS.parse open(site.url)
       rescue
         puts "ERR, #{Time.now}, #{site.name}, #{site.url}"
         prop = true
@@ -19,6 +19,7 @@ namespace :rss_feed do
       if !prop
         rss.items.each do |item|
           if find_item(item, site)
+            date = Time.now
             p item.title.force_encoding("UTF-8")
             p item.link.force_encoding("UTF-8")
             unless item.description == nil
@@ -32,7 +33,6 @@ namespace :rss_feed do
             elsif item.pubDate
               date = item.pubDate
             end
-            p date
             feed = site.feeds.create! title: title, url: item.link, description: description, date: date
             go_body(feed)
             go_img(feed)
@@ -49,12 +49,12 @@ namespace :rss_feed do
     img.each do |i|
       image = i.attributes['data-original']
       if image == nil
-        url = i.attributes['src'].value
+        url = i.attributes['src']
       else
         url = image.value
       end
       begin
-        save_image = feed.feed_images.create! image: open(url)
+        save_image = feed.feed_images.create! image: open(url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       rescue
         p 'ASD'
       else
