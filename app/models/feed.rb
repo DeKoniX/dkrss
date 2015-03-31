@@ -11,6 +11,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  date        :datetime
+#  slug        :string(255)
 #
 
 class Feed < ActiveRecord::Base

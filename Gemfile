@@ -4,7 +4,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'jbuilder', '~> 1.2'
   gem 'libv8'
-  gem 'therubyracer', :platforms => :ruby
+  # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier'
 end
 

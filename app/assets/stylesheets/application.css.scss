@@ -22,12 +22,8 @@
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-// import original bootstrap
-// @import "twitter/bootstrap";
-//
 body {
   background-color: #241E27;
-  /*color: #8d8093;*/
   color: #fff;
   font-size: 136%;
 }
@@ -42,4 +38,24 @@ a:hover {
 }
 .list-group-item {
   background-color: #241E27;
+}
+span.icon-bar {
+  background-color: #8D8093;
+}
+div.navbar-collapse {
+  a:hover {
+    background-color: #201E27;
+  }
+}
+ul.dropdown-menu {
+  background-color: #241E27;
+  a {
+    color: #8d8093;
+  }
+  a:visited {
+    color: #8d8093;
+  }
+  a:hover {
+    color: #8D8093;
+  }
 }
