@@ -13,6 +13,7 @@ group :default do
   #                              :github => 'anjlab/bootstrap-rails',
   #                              :branch => '3.0.0'
   #gem 'bootstrap-sass'
+  gem 'airbrake'
   gem 'babosa'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
