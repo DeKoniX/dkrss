@@ -27,11 +27,14 @@ role :app, domain                          # This may be the same as your `Web` 
 role :db,  domain, :primary => true # This is where Rails migrations will run
 
 before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby'
-after 'deploy:update_code', :roles => :app do
+# after 'deploy:update_code', :roles => :app do
+before 'deploy:assets:update_asset_mtimes' do
   run "rm -rf  #{current_release}/public"
   run "ln -s #{deploy_to}/shared/public/ #{current_release}/public"
   run "rm -f #{current_release}/config/database.yml"
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
+  run "rm -f #{current_release}/config/sidekiq.yml"
+  run "ln -s #{deploy_to}/shared/config/sidekiq.yml #{current_release}/config/sidekiq.yml"
 end
 
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
