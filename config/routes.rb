@@ -4,6 +4,7 @@ Dkrss::Application.routes.draw do
   resources :favorits
   get 'favorit/:sha' => "favorits#get_rss", :defaults => { :format => 'rss' }, as: "favorits_rss"
   get 'feeds/:sha' => "feeds#get_rss", :defaults => { :format => 'rss' }, as: "feeds_rss"
+  get 'sites/get' => "sites#get_rss", as: "sites_get_rss"
   post "favorit/add" => "feeds#add_favorit"
   resources :sites do
     resources :feeds

@@ -1,4 +1,5 @@
 <% if user_signed_in? %>
+  <%= link_to "Обновить", sites_get_rss_path %>
   <% @feeds.each do |feed| %>
     <% site = Site.find feed.site_id %>
     <p>Сайт: <%= link_to site.name, site_feeds_path(site) %></p>

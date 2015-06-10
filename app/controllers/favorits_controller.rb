@@ -7,8 +7,9 @@ class FavoritsController < InheritedResources::Base
     create! { favorits_path }
     @favorit.user_id = current_user.id
     @favorit.save!
+    GetFavorit.perform_async(@favorit.id)
   end
-  
+
   def get_rss
     @user = User.find_by rsskey: params[:sha]
 

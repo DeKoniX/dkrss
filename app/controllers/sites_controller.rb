@@ -7,6 +7,7 @@ class SitesController < InheritedResources::Base
     create! { sites_path }
     @site.user_id = current_user.id
     @site.save!
+    GetRss.perform_async(@site.id)
   end
 
   def edit
@@ -14,6 +15,15 @@ class SitesController < InheritedResources::Base
     unless @site.user_id == current_user.id
       redirect_to sites_path
     end
+  end
+
+  def get_rss
+    ids = []
+    current_user.sites.each do |site|
+      ids << site.id
+    end
+    RssFeed.perform_async(ids)
+    redirect_to :back
   end
 
   def update

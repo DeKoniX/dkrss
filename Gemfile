@@ -25,22 +25,25 @@ group :default do
   gem 'nokogiri'
   gem 'rails', '4.0.0'
   gem 'sass-rails'
+  gem 'sidekiq'
   gem 'simple_form'
   gem 'simple-rss'
   gem 'sqlite3'
   gem 'turbolinks'
   gem 'unicorn-worker-killer'
   gem 'unicorn'
+  gem 'whenever', :require => false
   gem 'will_paginate'
 end
 
 group :development do
   gem 'annotate'
-  gem 'capistrano'
-  gem 'rvm-capistrano', require: false
   gem 'capistrano_colors'
+  gem 'capistrano-sidekiq'
   gem 'capistrano-unicorn'
+  gem 'capistrano'
   gem 'rails-erd'
+  gem 'rvm-capistrano', require: false
 end
 
 group :production do

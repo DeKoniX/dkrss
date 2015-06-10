@@ -2,6 +2,8 @@ require 'capistrano_colors'
 require "rvm/capistrano"
 require 'capistrano-unicorn'
 require 'bundler/capistrano'
+require 'whenever/capistrano'
+require 'capistrano/sidekiq'
 
 load "deploy/assets"
 
