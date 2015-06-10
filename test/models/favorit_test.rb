@@ -17,6 +17,20 @@
 require 'test_helper'
 
 class FavoritTest < ActiveSupport::TestCase
+  test "если избранное пусто" do
+    favorit = Favorit.new
+    assert favorit.invalid?
+    assert favorit.errors[:url].any?
+  end
+  test "проверка url правильный url" do
+    favorit = Favorit.new url: "http://ololo.ru/asd"
+    assert favorit.valid?
+  end
+  test "проверка url не правильный url" do
+    favorit = Favorit.new url: "asd"
+    assert favorit.invalid?
+    assert favorit.errors[:url].any?
+  end
   # test "the truth" do
   #   assert true
   # end

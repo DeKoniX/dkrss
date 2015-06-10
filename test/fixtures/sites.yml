@@ -14,9 +14,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  url: MyString
+  name: "AppStudio"
+  url: "http://appstudio.org/feed"
 
 two:
-  name: MyString
-  url: MyString
+  name: "LOR"
+  url: "http://feeds.feedburner.com/org/LOR"

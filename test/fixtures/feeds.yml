@@ -16,16 +16,6 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  url: MyString
-  description: MyString
-  body: MyString
-  site_id: 
+one: {}
 
-two:
-  title: MyString
-  url: MyString
-  description: MyString
-  body: MyString
-  site_id: 
+two: {}

@@ -16,16 +16,14 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  url: MyString
-  name: MyString
-  body: MyText
-  description: MyText
-  user: 
+onei:
+  url: "http://habrahabr.ru/post/257207/"
+  name: "Бесплатные SSL-сертификаты теперь на 3 года от WoSign / Хабрахабр"
+  body:
+  description:
 
 two:
-  url: MyString
-  name: MyString
-  body: MyText
-  description: MyText
-  user: 
+  url: "http://feedproxy.google.com/~r/yablyk/~3/huCaImoaomg/"
+  name: "Hazel — автоматизация всего и вся на Mac OS X"
+  body:
+  description:

@@ -16,6 +16,9 @@
 
 class Favorit < ActiveRecord::Base
   extend FriendlyId
+
+  validates :url, presence: true, :format => {:with => URI.regexp}
+
   friendly_id :name, use: :slugged
   belongs_to :users
 end

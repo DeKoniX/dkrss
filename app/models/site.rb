@@ -13,6 +13,10 @@
 
 class Site < ActiveRecord::Base
   extend FriendlyId
+
+  validates :name, presence: true
+  validates :url, presence: true, :format => {:with => URI.regexp}
+
   friendly_id :name, use: :slugged
   has_many :feeds, dependent: :destroy
   belongs_to :users
