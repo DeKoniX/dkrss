@@ -35,6 +35,12 @@ before 'deploy:assets:update_asset_mtimes' do
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
   run "rm -f #{current_release}/config/sidekiq.yml"
   run "ln -s #{deploy_to}/shared/config/sidekiq.yml #{current_release}/config/sidekiq.yml"
+
+  # rvmrc to bash
+  run "rm -rf #{current_release}/.ruby-version"
+  run "ln -s #{deploy_to}/shared/config/ruby-version #{current_release}/.ruby-version"
+  run "rm -rf #{current_release}/.ruby-gemset"
+  run "ln -s #{deploy_to}/shared/config/ruby-gemset #{current_release}/.ruby-gemset"
 end
 
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded

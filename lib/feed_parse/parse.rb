@@ -67,7 +67,7 @@ module FeedParse
       feed.body = ''
       doc = open(feed.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       doc = doc.read
-      doc.encode('utf-8')
+      doc.force_encoding('utf-8')
       doc = Nokogiri::HTML doc
       f.each do |fi|
         d = doc.search(fi)
