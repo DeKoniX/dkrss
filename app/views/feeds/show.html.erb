@@ -1,8 +1,7 @@
 <% @title = @feed.title %>
-<h2><%= link_to @feed.title, @feed.url %></h2>
-<h3><%= link_to @site.name, site_feeds_path(@site) %></h3>
+<h4><%= link_to @site.name, site_feeds_path(@site) %> -- <%= link_to @feed.title, @feed.url %></h4>
 <% if user_signed_in? %>
-  <h4><%= link_to 'Add_favorit', favorit_add_path(feed_id: @feed.id), method: :post %></h4>
+  <h5><%= link_to 'Добавить в избранное', favorit_add_path(feed_id: @feed.id), method: :post %></h5>
 <% end %>
-<h5><%= link_to 'К списку', root_path %></h5>
-<%= raw @feed.body %>
+<p><%= link_to 'К списку', root_path %></p>
+<p><%= raw @feed.body %></p>

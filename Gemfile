@@ -9,12 +9,9 @@ group :assets do
 end
 
 group :default do
-  #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-  #                              :github => 'anjlab/bootstrap-rails',
-  #                              :branch => '3.0.0'
-  #gem 'bootstrap-sass'
   gem 'airbrake'
   gem 'babosa'
+  gem 'bootstrap-sass', '~> 3.3.4'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
   gem 'devise'
@@ -24,6 +21,7 @@ group :default do
   gem 'jquery-rails'
   gem 'nokogiri'
   gem 'rails', '4.0.0'
+  gem 'russian'
   gem 'sass-rails'
   gem 'sidekiq'
   gem 'simple_form'

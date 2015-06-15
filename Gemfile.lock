@@ -34,8 +34,14 @@ GEM
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     arel (4.0.2)
+    autoprefixer-rails (5.2.0)
+      execjs
+      json
     babosa (1.0.2)
     bcrypt (3.1.10)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     bootstrap-will_paginate (0.0.10)
       will_paginate
     builder (3.1.4)
@@ -150,6 +156,8 @@ GEM
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     ruby-graphviz (1.0.9)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     rvm-capistrano (1.5.6)
       capistrano (~> 2.15.4)
     sass (3.4.13)
@@ -214,6 +222,7 @@ DEPENDENCIES
   airbrake
   annotate
   babosa
+  bootstrap-sass (~> 3.3.4)
   bootstrap-will_paginate
   capistrano
   capistrano-sidekiq
@@ -232,6 +241,7 @@ DEPENDENCIES
   pg
   rails (= 4.0.0)
   rails-erd
+  russian
   rvm-capistrano
   sass-rails
   sidekiq

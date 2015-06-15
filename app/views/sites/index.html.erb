@@ -1,10 +1,17 @@
 <% @title = "Сайты" %>
-<ul>
+<%= link_to "Добавить новый сайт в список", new_site_path %>
+<table class="table table-striped">
+  <tr>
+    <th>Сайт</th>
+    <th>url</th>
+    <th colspan="2"></th>
+  </tr>
   <% @sites.sort_by(&:name).each do |site| %>
-    <li class="list-group-item">Сайт: <%= link_to site.name, site_feeds_path(site) %></li>
-    <li class="list-group-item">URL: <%= site.url %></li>
-    <li class="list-group-item"><%= link_to 'Редактировать', edit_site_path(site) %> <%= link_to 'Удалить', site, method: :delete  %></li>
-    <br />
+    <tr>
+      <td> <%= link_to site.name, site_feeds_path(site) %> </td>
+      <td> <%= link_to site.url, site.url %> </td>
+      <td> <%= link_to "Редактировать", edit_site_path(site) %> </td>
+      <td> <%= link_to "Удалить", site, method: :delete %> </td>
+    </tr>
   <% end %>
-</ul>
-<%= link_to "Добавить", new_site_path %>
+</table>

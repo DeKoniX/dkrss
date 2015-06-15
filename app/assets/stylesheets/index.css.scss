@@ -8,3 +8,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.table {
+  background-color: #241E27;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #211C25;
+}

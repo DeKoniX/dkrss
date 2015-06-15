@@ -8,25 +8,19 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap.min
  *= require_self
  *= require_tree .
  */
 
- @font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../assets/glyphicons-halflings-regular.eot');
-  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-       url('../assets/glyphicons-halflings-regular.woff') format('woff'),
-       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
-       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 body {
   background-color: #241E27;
   color: #fff;
   font-size: 136%;
 }
+
 a {
   color: #8d8093;
 }
@@ -36,26 +30,41 @@ a:visited {
 a:hover {
   color: #8D8093;
 }
-.list-group-item {
-  background-color: #241E27;
-}
-span.icon-bar {
-  background-color: #8D8093;
-}
-div.navbar-collapse {
-  a:hover {
-    background-color: #201E27;
+
+.nav {
+  ul.dropdown-menu {
+    background-color: #211C25;
+  }
+  .open, li {
+    a {
+      background-color: #241E27;
+      color: #8d8093;
+    }
+    a:hover, a:focus {
+      background-color: #211C25;
+      color: #675D6B;
+    }
   }
 }
-ul.dropdown-menu {
-  background-color: #241E27;
-  a {
+
+.pagination {
+  li, .prev, .disabled, .next, .active {
+    a {
+      color: #8d8093;
+      background-color: #241E27;
+      border-color: #241E27;
+    }
+    a:hover, a:focus {
+      background-color: #211C25;
+      color: #675D6B;
+      border-color: #211C25;
+    }
+  }
+  /* a {
     color: #8d8093;
-  }
-  a:visited {
-    color: #8d8093;
-  }
-  a:hover {
-    color: #8D8093;
-  }
+  } */
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
