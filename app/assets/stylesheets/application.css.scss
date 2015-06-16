@@ -48,7 +48,7 @@ a:hover {
 }
 
 .pagination {
-  li, .prev, .disabled, .next, .active {
+  li, .prev, .disabled, .next {
     a {
       color: #8d8093;
       background-color: #241E27;
@@ -60,9 +60,18 @@ a:hover {
       border-color: #211C25;
     }
   }
-  /* a {
-    color: #8d8093;
-  } */
+  .active {
+    a {
+      background-color: #4A3F4F;
+      color: #9E8FA4;
+      border-color: #4A3F4F;
+    }
+    a:hover, a:focus {
+      background-color: #211C25;
+      color: #675D6B;
+      border-color: #211C25;
+    }
+  }
 }
 .col-centered{
     float: none;
