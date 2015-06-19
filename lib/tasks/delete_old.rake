@@ -23,4 +23,28 @@ namespace :delete_old do
       end
     end
   end
+
+  desc "Удаление записей с одинаковым адресом"
+  task delete_url_feed: :environment do
+    feeds_delete = []
+    User.all.each do |user|
+      user.feeds.each do |feed_old|
+        user.feeds.each do |feed|
+          if feed_old.url == feed.url
+            feeds_delete << feed.id
+          end
+        end
+      end
+    end
+
+    feeds_delete.each do |feed|
+      begin
+        f = Feed.find feed
+        f.destroy!
+        puts "DELETE: #{f.id} - #{f.title}"
+      rescue
+        ""
+      end
+    end
+  end
 end
