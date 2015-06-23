@@ -1,0 +1,5 @@
+<p><%= link_to @url, favorit_path(@favorit) %> добавлен в ваш список избранного</p>
+<%= link_to "Ваше избранное", favorits_path %>
+<% if :back %>
+  <%= link_to "Вернуться на предыдущую страницу", @url %>
+<% end %>

@@ -27,16 +27,15 @@ class FavoritsController < InheritedResources::Base
 
   def add_favorit
     require 'open-uri'
-    user = User.find_by rsskey: params[:sha]
+    if user_signed_in?
+      @url = URI::encode params[:url]
 
-    url = URI::encode params[:url]
-
-    favorit = user.favorits.new url: url, name: ''
-    if favorit.save
-      redirect_to(:back) if request.env["HTTP_REFERER"]
-      redirect_to favorits_path
+      @favorit = current_user.favorits.new url: @url, name: ''
+      unless @favorit.save
+        redirect_to root_path, notice: "Произошла ошибка при добавлении нового избранного"
+      end
     else
-      raise "ERROR"
+      redirect_to new_user_session_path
     end
   end
 
