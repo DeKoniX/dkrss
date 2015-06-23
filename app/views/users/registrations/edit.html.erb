@@ -20,6 +20,11 @@
   </div>
 <% end %>
 
+<h3>Ваш API ключ</h3>
+<p>
+  API: <%= current_user.rsskey %>
+</p>
+
 <h3>Ваши RSS ленты</h3>
 <p>
   <%= link_to "Ваши новости", feeds_rss_path(current_user.rsskey) %>

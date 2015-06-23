@@ -2,6 +2,7 @@ Dkrss::Application.routes.draw do
   devise_for :users
   root 'index#index'
   resources :favorits
+  get 'add/:sha/*url' => 'favorits#add_favorit', format: false
   get 'favorit/:sha' => "favorits#get_rss", :defaults => { :format => 'rss' }, as: "favorits_rss"
   get 'feeds/:sha' => "feeds#get_rss", :defaults => { :format => 'rss' }, as: "feeds_rss"
   get 'sites/get' => "sites#get_rss", as: "sites_get_rss"
