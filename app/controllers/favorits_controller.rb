@@ -33,6 +33,8 @@ class FavoritsController < InheritedResources::Base
       @favorit = current_user.favorits.new url: @url, name: ''
       unless @favorit.save
         redirect_to root_path, notice: "Произошла ошибка при добавлении нового избранного"
+      else
+        GetFavorit.perform_async(@favorit.id)
       end
     else
       redirect_to new_user_session_path
