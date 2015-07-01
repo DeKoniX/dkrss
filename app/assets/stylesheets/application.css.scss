@@ -77,3 +77,21 @@ a:hover {
     float: none;
     margin: 0 auto;
 }
+
+#scrollup {
+  position: fixed;
+  opacity: 0.3;
+  padding: 15px 10px 10px;
+  background: #aaa;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  left: 10px;
+  bottom: 10px;
+  display: none;
+  cursor: pointer;
+}
+
+#scrollup:hover {
+  opacity: 0.6;
+}
