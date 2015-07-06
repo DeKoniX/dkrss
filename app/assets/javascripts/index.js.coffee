@@ -1,7 +1,9 @@
-$(document).ready ->
+ready = ->
   $('#scrollup').click ->
     window.scroll(0, 0);
-    false
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
 
 $(window).scroll ->
   if $(document).scrollTop() > 0
