@@ -1,5 +1,11 @@
 <% @title = @site.name %>
-<h4>Сайт: <%= link_to @site.name, @site.url %>, <%= link_to "RSS", site_feed_rss_path(@site, current_user.rsskey) %></h4>
+<h4>Сайт: <%= link_to @site.name, @site.url %>
+  <% if user_signed_in? %>
+    <%# TODO: Функциональность подписки, сейчас тут ошибка %>
+    , <%= link_to "RSS", site_feed_rss_path(@site, current_user.rsskey) %></h4>
+  <% else %>
+    </h4>
+  <% end %>
 <% @feeds.each do |feed| %>
   <p><%= link_to feed.title, site_feed_path(@site, feed) %> <%= link_to "(#{feed.url})", feed.url %></p>
   <p><%= link_to 'Добавить в избранное', favorit_add_path(feed_id: feed.id), method: :post %></p>
