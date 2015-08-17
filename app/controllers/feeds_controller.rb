@@ -1,3 +1,4 @@
+# coding: utf-8
 class FeedsController < InheritedResources::Base
   belongs_to :site
   def index
@@ -9,7 +10,8 @@ class FeedsController < InheritedResources::Base
   def add_favorit
     @feed = Feed.find(params[:feed_id])
     @favorit = current_user.favorits.create! url: @feed.url, name: @feed.title, body: @feed.body, description: @feed.description
-    redirect_to favorits_path
+    redirect_to :back, notice: "В избранное добавлена статья: #{@feed.title}"
+    #TODO Сделать ссылку на статью
   end
   def show
     show!

@@ -1,5 +1,5 @@
 <% @title = @favorit.name %>
-<h2><%= @favorit.name %></h2>
+<h2><%= link_to @favorit.name, @favorit.url %></h2>
 <% if @favorit.body == nil %>
   <h4>Статья еще не сгенерирована, обновите страницу через пару минут</h4>
 <% else %>

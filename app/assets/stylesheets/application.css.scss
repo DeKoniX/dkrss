@@ -47,6 +47,15 @@ a:hover {
   }
 }
 
+.alert {
+    background-color: #232527;
+    color: #fff;
+}
+
+.close {
+    color: #fff;
+}
+
 .pagination {
   li, .prev, .disabled, .next {
     a {
