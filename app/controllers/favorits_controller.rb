@@ -1,10 +1,11 @@
+# coding: utf-8
 class FavoritsController < InheritedResources::Base
   def index
     @favorits = current_user.favorits.paginate(:page => params[:page], :order => "updated_at DESC", :per_page => 10)
   end
 
   def create
-    create! { favorits_path }
+    create!
     @favorit.user_id = current_user.id
     @favorit.save!
     GetFavorit.perform_async(@favorit.id)
