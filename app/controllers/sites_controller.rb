@@ -1,13 +1,19 @@
+# coding: utf-8
 class SitesController < InheritedResources::Base
   def index
     @sites = current_user.sites
   end
 
+  def delete
+    delete!(:notice => "Удален rss поток #{@site.name}")
+  end
+  
   def create
-    create! { sites_path }
+    create!{ sites_path }
     @site.user_id = current_user.id
     @site.save!
     GetRss.perform_async(@site.id)
+    flash[:notice] = "Добавлен новый rss поток #{@site.name}"
   end
 
   def edit
@@ -30,6 +36,7 @@ class SitesController < InheritedResources::Base
     update! { sites_path }
     @site.user_id = current_user.id
     @site.save!
+    flash[:notice] = "Отредактирован rss поток #{@site.name}"
   end
 
   def get_opml
