@@ -9,6 +9,7 @@ group :assets do
 end
 
 group :default do
+  gem 'addressable'
   gem 'airbrake'
   gem 'babosa'
   gem 'bootstrap-sass', '~> 3.3.4'
@@ -24,12 +25,12 @@ group :default do
   gem 'russian'
   gem 'sass-rails'
   gem 'sidekiq'
-  gem 'simple_form'
   gem 'simple-rss'
+  gem 'simple_form'
   gem 'sqlite3'
   gem 'turbolinks'
-  gem 'unicorn-worker-killer'
   gem 'unicorn'
+  gem 'unicorn-worker-killer'
   gem 'whenever', :require => false
   gem 'will_paginate'
 end

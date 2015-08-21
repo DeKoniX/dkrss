@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140417082257) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "favorits", force: true do |t|
     t.string   "url",                         null: false
     t.string   "name",                        null: false
@@ -25,11 +28,11 @@ ActiveRecord::Schema.define(version: 20140417082257) do
     t.string   "slug"
   end
 
-  add_index "favorits", ["slug"], name: "index_favorits_on_slug", unique: true
-  add_index "favorits", ["user_id"], name: "index_favorits_on_user_id"
+  add_index "favorits", ["slug"], name: "index_favorits_on_slug", unique: true, using: :btree
+  add_index "favorits", ["user_id"], name: "index_favorits_on_user_id", using: :btree
 
   create_table "feed_images", force: true do |t|
-    t.text     "image",      limit: 255
+    t.text     "image"
     t.integer  "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
 
   create_table "feeds", force: true do |t|
     t.string   "title"
-    t.text     "url",         limit: 255
+    t.text     "url"
     t.text     "description"
     t.text     "body"
     t.integer  "site_id"
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
     t.string   "slug"
   end
 
-  add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true
+  add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree
 
   create_table "sites", force: true do |t|
     t.string   "name"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20140417082257) do
     t.string   "slug"
   end
 
-  add_index "sites", ["slug"], name: "index_sites_on_slug", unique: true
-  add_index "sites", ["user_id"], name: "index_sites_on_user_id"
+  add_index "sites", ["slug"], name: "index_sites_on_slug", unique: true, using: :btree
+  add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
     t.string   "rsskey"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

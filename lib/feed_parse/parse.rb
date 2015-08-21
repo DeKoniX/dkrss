@@ -62,10 +62,12 @@ module FeedParse
 
   def go_body(feed)
     require 'open-uri'
+    require "addressable/uri"
     f = ['article', 'div#content', 'div.content', 'div.yab-article']
     unless feed.body
       feed.body = ''
-      doc = open(feed.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      uri = Addressable::URI.parse(feed.url).normalize
+      doc = open(uri, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       doc = doc.read
       doc.force_encoding('utf-8')
       doc = Nokogiri::HTML doc
