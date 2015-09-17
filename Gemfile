@@ -15,11 +15,13 @@ group :default do
   gem 'bootstrap-sass', '~> 3.3.4'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
+  gem 'carrierwave-webp'
   gem 'devise'
   gem 'friendly_id', '~> 5.0.4'
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
+  gem 'mini_magick'
   gem 'nokogiri'
   gem 'rails', '4.0.0'
   gem 'russian'
@@ -37,10 +39,12 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'capistrano_colors'
+  gem 'capistrano'
   gem 'capistrano-sidekiq'
   gem 'capistrano-unicorn'
-  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'pry'
+  gem 'pry-doc'
   gem 'rails-erd'
   gem 'rvm-capistrano', require: false
 end

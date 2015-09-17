@@ -1,10 +1,8 @@
 # encoding: utf-8
 
 class ImageFeedUploader < CarrierWave::Uploader::Base
-
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+  include CarrierWave::WebP::Converter
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -15,6 +13,9 @@ class ImageFeedUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  process convert: :png
+  process :convert_to_webp
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
