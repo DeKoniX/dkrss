@@ -2,7 +2,7 @@
 class FavoritsController < InheritedResources::Base
   skip_before_filter :verify_authenticity_token, :only => [:add_favorit]
   def index
-    @favorits = current_user.favorits.paginate(:page => params[:page], :order => "updated_at DESC", :per_page => 10)
+    @favorits = current_user.favorits.paginate(:page => params[:page]).order("updated_at DESC")
   end
 
   def create
@@ -16,7 +16,7 @@ class FavoritsController < InheritedResources::Base
     @user = User.find_by rsskey: params[:sha]
 
     @favorits = []
-    @user.favorits.all(:order => "created_at DESC", :limit => 30).each do |favorit|
+    @user.favorits.all.order("created_at DESC").limit(30).each do |favorit|
       unless favorit.body.nil?
         @favorits << favorit
       end

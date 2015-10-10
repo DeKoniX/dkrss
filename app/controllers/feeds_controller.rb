@@ -3,9 +3,7 @@ class FeedsController < InheritedResources::Base
   belongs_to :site
   def index
     @site = Site.find(params[:site_id])
-    #index!
-    @feeds = @site.feeds.paginate(:page => params[:page], :order => "date DESC", :per_page => 10)
-    #@feeds = @site.feeds.order('created_at DESC').page(params[:page])
+    @feeds = @site.feeds.paginate(:page => params[:page]).order("date DESC")
   end
   def add_favorit
     @feed = Feed.find(params[:feed_id])
@@ -20,7 +18,7 @@ class FeedsController < InheritedResources::Base
   def get_rss
     @user = User.find_by rsskey: params[:sha]
 
-    @feeds = @user.feeds.all(:order => "created_at DESC", :limit => 60)
+    @feeds = @user.feeds.all.order("created_at DESC").limit(60)
 
     respond_to do |format|
       format.rss { render :layout => false }
@@ -30,7 +28,7 @@ class FeedsController < InheritedResources::Base
     @user = User.find_by rsskey: params[:sha]
     @site = Site.find(params[:site_id])
 
-    @feeds = @site.feeds.all(:order => "created_at DESC", :limit => 60)
+    @feeds = @site.feeds.all.order("created_at DESC").limit(60)
 
     respond_to do |format|
       format.rss { render layout: false }

@@ -35,6 +35,8 @@ before 'deploy:assets:update_asset_mtimes' do
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
   run "rm -f #{current_release}/config/sidekiq.yml"
   run "ln -s #{deploy_to}/shared/config/sidekiq.yml #{current_release}/config/sidekiq.yml"
+  run "rm -f #{current_release}/config/newrelic.yml"
+  run "ln -s #{deploy_to}/shared/config/newrelic.yml #{current_release}/config/newrelic.yml"
 
   # rvmrc to bash
   run "rm -rf #{current_release}/.ruby-version"
