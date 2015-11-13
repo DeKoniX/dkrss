@@ -29,8 +29,12 @@ module FeedParse
             date = item.pubDate
           end
           feed = site.feeds.create! title: title, url: item.link, description: description, date: date
-          go_body(feed)
-          go_img(feed)
+          begin
+            go_body(feed)
+            go_img(feed)
+          rescue
+            puts "ERR, #{Time.now}, #{site.name}, #{site.url}, #{item.title}, #{item.url}"
+          end
         end
       end
     end
