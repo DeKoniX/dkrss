@@ -15,7 +15,6 @@ group :default do
   gem 'bootstrap-sass'
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
-  gem 'carrierwave-webp'
   gem 'devise'
   gem 'friendly_id'
   gem 'htmlentities'
