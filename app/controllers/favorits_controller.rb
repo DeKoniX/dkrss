@@ -5,6 +5,15 @@ class FavoritsController < InheritedResources::Base
     @favorits = current_user.favorits.paginate(:page => params[:page]).order("updated_at DESC")
   end
 
+  def show
+    begin
+      @favorit = Favorit.find params[:id]
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, notice: "Такой статьи не существует"
+      # ToDO: Error page
+    end
+  end
+
   def create
     create!(:notice => "Создание избранной статьи")
     @favorit.user_id = current_user.id

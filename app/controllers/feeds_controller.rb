@@ -12,8 +12,12 @@ class FeedsController < InheritedResources::Base
     #TODO Сделать ссылку на статью
   end
   def show
-    show!
-    @site = Site.find(@feed.site_id)
+    begin
+      @feed = Feed.find params[:id]
+      @site = Site.find(@feed.site_id)
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, notice: "Такой статьи не существует"
+     end
   end
   def get_rss
     @user = User.find_by rsskey: params[:sha]
