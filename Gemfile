@@ -24,6 +24,7 @@ group :default do
   gem 'newrelic_rpm'
   gem 'nokogiri'
   gem 'rails'
+  gem 'redis-namespace'
   gem 'russian'
   gem 'sass-rails'
   gem 'sidekiq'
