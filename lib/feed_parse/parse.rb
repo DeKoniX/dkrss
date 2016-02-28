@@ -64,6 +64,31 @@ module FeedParse
     feed.save!
   end
 
+  def div_search(doc, name)
+    length = 0
+    body = ""
+    div = doc.search name
+    div.each do |d|
+      if d.to_str.length > length
+        body = d
+        length = d.to_str.length
+      end
+    end
+
+    return body
+  end
+
+  def delete_script(str)
+    n = 0
+    while (str=~/<script.*>/) != nil
+      n += 1
+      str = str.gsub( str[str=~/<script.*>/..(str=~/<\/script>/)+8], '' )
+      break if n >= 1000
+    end
+
+    return str
+  end
+
   def go_body(feed)
     require 'open-uri'
     require "addressable/uri"
@@ -75,13 +100,14 @@ module FeedParse
       doc = doc.read
       doc.force_encoding('utf-8')
       doc = Nokogiri::HTML doc
-      f.each do |fi|
-        d = doc.search(fi)
-        if d.to_s != ''
-          feed.body = d.to_s
-          break
-        end
+
+      body = div_search(doc, 'article')
+      if body.to_s == ""
+        body = div_search(doc, 'div')
       end
+      body = delete_script(body.to_s)
+      feed.body = body.to_s
+
       feed.save!
     end
   end

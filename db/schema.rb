@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "favorits", force: true do |t|
+  create_table "favorits", force: :cascade do |t|
     t.string   "url",                         null: false
     t.string   "name",                        null: false
     t.text     "body"
@@ -31,14 +31,14 @@ ActiveRecord::Schema.define(version: 20140417082257) do
   add_index "favorits", ["slug"], name: "index_favorits_on_slug", unique: true, using: :btree
   add_index "favorits", ["user_id"], name: "index_favorits_on_user_id", using: :btree
 
-  create_table "feed_images", force: true do |t|
+  create_table "feed_images", force: :cascade do |t|
     t.text     "image"
     t.integer  "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "feeds", force: true do |t|
+  create_table "feeds", force: :cascade do |t|
     t.string   "title"
     t.text     "url"
     t.text     "description"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree
 
-  create_table "sites", force: true do |t|
+  create_table "sites", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.datetime "created_at"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140417082257) do
   add_index "sites", ["slug"], name: "index_sites_on_slug", unique: true, using: :btree
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
