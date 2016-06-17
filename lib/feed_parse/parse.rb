@@ -2,9 +2,6 @@ module FeedParse
 
   def parse_rss(site)
     prop = false
-    p site.name
-    p site.url
-    p '######'
     begin
       rss = SimpleRSS.parse open(site.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
     rescue
@@ -15,8 +12,6 @@ module FeedParse
       rss.items.each do |item|
         if find_item(item, site)
           date = Time.now
-          p item.title.force_encoding("UTF-8")
-          p item.link.force_encoding("UTF-8")
           title = HTMLEntities.new.decode item.title.force_encoding("UTF-8")
           unless item.description == nil
             description = HTMLEntities.new.decode item.description.force_encoding("UTF-8")
@@ -27,12 +22,13 @@ module FeedParse
             date = item.pubDate
           end
           feed = site.feeds.create! title: title, url: item.link, description: description, date: date
-          begin
-            go_body(feed)
-            go_img(feed)
-          rescue
-            puts "ERR, #{Time.now}, #{site.name}, #{site.url}, #{item.title}, #{item.url}"
-          end
+          GetFeed.perform_async(feed.id)
+          # begin
+          #   go_body(feed)
+          #   go_img(feed)
+          # rescue
+          #   puts "ERR, #{Time.now}, #{site.name}, #{site.url}, #{item.title}, #{item.url}"
+          # end
         end
       end
     end
@@ -52,11 +48,11 @@ module FeedParse
       begin
         save_image = feed.feed_images.create! image: open(url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       rescue
-        p 'ASD'
       else
         url = save_image.image.url
         i.attributes['src'].value = url
       end
+      
     end
     feed.body = doc.to_html
     feed.save!
@@ -90,7 +86,7 @@ module FeedParse
   def go_body(feed)
     require 'open-uri'
     require "addressable/uri"
-    f = ['article', 'div#content', 'div.content', 'div.yab-article']
+    # f = ['article', 'div#content', 'div.content', 'div.yab-article']
     unless feed.body
       feed.body = ''
       uri = Addressable::URI.parse(feed.url).normalize
@@ -122,11 +118,17 @@ module FeedParse
   end
 
   def find_item(item, site)
-    site.feeds.all.each do |feed|
-      if item.link == feed.url
-        return false
-      end
+    if site.feeds.find_by url: item.link
+      return false
+    else
+      return true
     end
-    return true
+    
+    # site.feeds.all.each do |feed|
+    #   if item.link == feed.url
+    #     return false
+    #   end
+    # end
+    # return true
   end
 end

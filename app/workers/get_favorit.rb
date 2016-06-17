@@ -1,8 +1,9 @@
 require './lib/feed_parse/parse'
 class GetFavorit
-
   include Sidekiq::Worker
   include FeedParse
+
+  sidekiq_options queue: 'favorits'
 
   def perform(favorit_id)
     favorit = Favorit.find favorit_id
