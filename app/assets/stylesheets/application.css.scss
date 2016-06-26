@@ -104,3 +104,31 @@ a:hover {
 #scrollup:hover {
   opacity: 0.6;
 }
+
+#back {
+  position: fixed;
+  opacity: 0.3;
+  /* background: #aaa; */
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  left: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  height: 100%;
+  display: none;
+
+  img {
+    position: relative;
+    top: 50%;
+  }
+}
+
+#back:hover {
+  opacity: 0.6;
+}
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: #8d8093;
+}

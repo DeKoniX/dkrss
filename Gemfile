@@ -31,7 +31,7 @@ group :default do
   gem 'simple-rss'
   gem 'simple_form'
   gem 'sqlite3'
-  gem 'turbolinks'
+  gem 'turbolinks', '~> 5.0.0.beta'
   gem 'unicorn'
   gem 'unicorn-worker-killer'
   gem 'whenever', :require => false
