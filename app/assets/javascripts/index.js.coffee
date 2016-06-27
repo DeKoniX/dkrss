@@ -27,6 +27,11 @@ document.addEventListener("turbolinks:click", click_url)
 $(window).scroll ->
   if $(document).scrollTop() > 0
     $('#scrollup').fadeIn('fast')
+    $('#back').fadeOut('fast')
   else
     $('#scrollup').fadeOut('fast')
+    if back_history_length > 0
+      $('#back').fadeIn('fast')
+    else
+      $('#back').hide()
 
