@@ -31,6 +31,12 @@ a:hover {
   color: #8D8093;
 }
 
+nav.navbar {
+    border: 1px solid #211c25;
+}
+.icon-bar {
+    background-color: #8d8093;
+}
 .nav {
   ul.dropdown-menu {
     background-color: #211C25;
@@ -128,4 +134,19 @@ a:hover {
 .turbolinks-progress-bar {
   height: 5px;
   background-color: #8d8093;
+}
+
+form.navbar-form {
+  div.form-group {
+      input.form-control {
+          background-color: #2b242e;
+          border-color: #211C25;
+          color: #8d8093;
+      }
+  }
+  input.btn {
+      background-color: #2b242e;
+      border-color: #211C25;
+      color: #8d8093;
+  }
 }

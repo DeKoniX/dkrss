@@ -5,8 +5,13 @@ class IndexController < ApplicationController
         current_user.rsskey = Digest::SHA1.hexdigest "@{Time.now} #{current_user.email}"
         current_user.save!
       end
-      @feeds = current_user.feeds.paginate(:page => params[:page]).order('date DESC')
-      
+      if params[:q].nil?
+        @feeds = current_user.feeds
+      else
+        @feeds = current_user.feeds.where('title LIKE ?', "%#{params[:q]}%")
+      end
+      @feeds = @feeds.paginate(:page => params[:page]).order('date DESC')
+
       if @feeds == []
         redirect_to sites_path
       end
