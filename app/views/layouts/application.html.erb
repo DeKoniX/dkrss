@@ -37,9 +37,9 @@
                 <li class="active"><%= link_to "Настройка сайтов", sites_url %></li>
                 <li><%= link_to "Избранное", favorits_url %></li>
             </ul>
-            <%= form_tag({controller: "index", action: "index"}, method: "get", class: "navbar-form navbar-left") do %>
+            <%= form_tag("/", method: "get", class: "navbar-form navbar-left") do %>
               <div class="form-group">
-                <%= text_field_tag(:q, '', class: "form-control", placeholder: 'Поиск...') %>
+                <%= text_field_tag(:q, "#{params[:q]}", class: "form-control", placeholder: 'Поиск...') %>
               </div>
               <%= submit_tag("Поиск",class: "btn btn-default") %>
             <% end %>
