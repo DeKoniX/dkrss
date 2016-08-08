@@ -10,7 +10,7 @@
     <%- end %>
     <%= link_to "(#{feed.url})", feed.url %></p>
     <p><%= link_to 'Добавить в избранное', favorit_add_path(feed_id: feed.id), method: :post %></p>
-    <p><%= raw description_l(feed.description) %></p>
+    <div id='feed_body'><%= raw description_l(feed.description) %></div>
     
     ------
     <p><%= I18n.l feed.date %></p>
