@@ -1,0 +1,58 @@
+{
+    "master_picture": "app/assets/images/master_picture.png",
+    "favicon_design": {
+        "ios": {
+            "picture_aspect": "background_and_margin",
+            "background_color": "#d4d4d4",
+            "margin": "14%",
+            "assets": {
+                "ios6_and_prior_icons": true,
+                "ios7_and_later_icons": true,
+                "precomposed_icons": false,
+                "declare_only_default_icon": true
+            },
+            "app_name": "DKRSS"
+        },
+        "desktop_browser": [
+
+        ],
+        "windows": {
+            "picture_aspect": "no_change",
+            "background_color": "#2d89ef",
+            "on_conflict": "override",
+            "assets": {
+                "windows_80_ie_10_tile": false,
+                "windows_10_ie_11_edge_tiles": {
+                    "small": false,
+                    "medium": true,
+                    "big": false,
+                    "rectangle": false
+                }
+            },
+            "app_name": "DKRSS"
+        },
+        "android_chrome": {
+            "picture_aspect": "shadow",
+            "theme_color": "#ffffff",
+            "manifest": {
+                "name": "DKRSS",
+                "display": "standalone",
+                "orientation": "not_set",
+                "on_conflict": "override",
+                "declared": true
+            },
+            "assets": {
+                "legacy_icon": false,
+                "low_resolution_icons": false
+            }
+        },
+        "safari_pinned_tab": {
+            "picture_aspect": "silhouette",
+            "theme_color": "#5bbad5"
+        }
+    },
+    "settings": {
+        "scaling_algorithm": "Mitchell",
+        "error_on_image_too_small": false
+    }
+}

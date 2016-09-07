@@ -34,7 +34,7 @@ group :default do
   gem 'turbolinks', '~> 5.0.0.beta'
   gem 'unicorn'
   gem 'unicorn-worker-killer'
-  gem 'whenever', :require => false
+  gem 'whenever', require: false
   gem 'will_paginate'
 end
 
@@ -47,6 +47,7 @@ group :development do
   gem 'pry'
   gem 'pry-doc'
   gem 'rails-erd'
+  gem 'rails_real_favicon'
   gem 'rvm-capistrano', require: false
 end
 
