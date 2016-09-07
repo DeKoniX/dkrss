@@ -51,6 +51,7 @@ module FeedParse
       else
         url = save_image.image.url
         i.attributes['src'].value = url
+        i.attributes['srcset'].remove if i.attributes['srcset']
       end
       
     end
