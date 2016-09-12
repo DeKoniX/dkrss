@@ -1,67 +1,67 @@
 module FeedParse
-
   def parse_rss(site)
     prop = false
     begin
-      rss = SimpleRSS.parse open(site.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      rss = SimpleRSS.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
     rescue
       puts "ERR, #{Time.now}, #{site.name}, #{site.url}"
       prop = true
     end
-    if !prop
+    unless prop
       rss.items.each do |item|
-        if find_item(item, site)
-          date = Time.now
-          title = HTMLEntities.new.decode item.title.force_encoding("UTF-8")
-          unless item.description == nil
-            description = HTMLEntities.new.decode item.description.force_encoding("UTF-8")
-          end
-          if item.updated
-            date = item.updated
-          elsif item.pubDate
-            date = item.pubDate
-          end
-          feed = site.feeds.create! title: title, url: item.link, description: description, date: date
-          GetFeed.perform_async(feed.id)
-          # begin
-          #   go_body(feed)
-          #   go_img(feed)
-          # rescue
-          #   puts "ERR, #{Time.now}, #{site.name}, #{site.url}, #{item.title}, #{item.url}"
-          # end
+        next unless find_item(item, site)
+        date = Time.now
+        title = HTMLEntities.new.decode item.title.force_encoding('UTF-8')
+        unless item.description.nil?
+          description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
         end
+        if item.updated
+          date = item.updated
+        elsif item.pubDate
+          date = item.pubDate
+        end
+        feed = site.feeds.create! title: title, url: item.link, description: description, date: date
+        go_img(feed, false)
+        GetFeed.perform_async(feed.id)
       end
     end
   end
 
-  def go_img(feed)
+  def go_img(feed, body = true)
     require 'open-uri'
-    doc = Nokogiri::HTML feed.body
+    doc = if body == true
+            Nokogiri::HTML feed.body
+          else
+            Nokogiri::HTML feed.description
+          end
     img = doc.search('img')
     img.each do |i|
       image = i.attributes['data-original']
-      if image == nil
-        url = i.attributes['src']
-      else
-        url = image.value
-      end
+      url = if image.nil?
+              i.attributes['src']
+            else
+              image.value
+            end
       begin
-        save_image = feed.feed_images.create! image: open(url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+        save_image = feed.feed_images.create! image: open(url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       rescue
       else
         url = save_image.image.url
         i.attributes['src'].value = url
         i.attributes['srcset'].remove if i.attributes['srcset']
       end
-      
     end
-    feed.body = doc.to_html
+    if body == true
+      feed.body = doc.to_html
+    else
+      feed.description = doc.to_html
+    end
     feed.save!
   end
 
   def div_search(doc, name)
     length = 0
-    body = ""
+    body = ''
     div = doc.search name
     div.each do |d|
       if d.to_str.length > length
@@ -70,36 +70,34 @@ module FeedParse
       end
     end
 
-    return body
+    body
   end
 
   def delete_script(str)
     n = 0
-    while (str=~/<script.*>/) != nil
+    until (str =~ /<script.*>/).nil?
       n += 1
-      str = str.gsub( str[str=~/<script.*>/..(str=~/<\/script>/)+8], '' )
+      str = str.gsub(str[str =~ /<script.*>/..(str =~ /<\/script>/) + 8], '')
       break if n >= 1000
     end
 
-    return str
+    str
   end
 
   def go_body(feed)
     require 'open-uri'
-    require "addressable/uri"
+    require 'addressable/uri'
     # f = ['article', 'div#content', 'div.content', 'div.yab-article']
     unless feed.body
       feed.body = ''
       uri = Addressable::URI.parse(feed.url).normalize
-      doc = open(uri, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      doc = open(uri, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       doc = doc.read
       doc.force_encoding('utf-8')
       doc = Nokogiri::HTML doc
 
       body = div_search(doc, 'article')
-      if body.to_s == ""
-        body = div_search(doc, 'div')
-      end
+      body = div_search(doc, 'div') if body.to_s == ''
       body = delete_script(body.to_s)
       feed.body = body.to_s
 
@@ -108,7 +106,7 @@ module FeedParse
   end
 
   def go_name(favorit)
-    doc = open(favorit.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+    doc = open(favorit.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
     doc = doc.read
     doc.encode('utf-8')
     doc = Nokogiri::HTML doc
@@ -124,12 +122,5 @@ module FeedParse
     else
       return true
     end
-    
-    # site.feeds.all.each do |feed|
-    #   if item.link == feed.url
-    #     return false
-    #   end
-    # end
-    # return true
   end
 end
