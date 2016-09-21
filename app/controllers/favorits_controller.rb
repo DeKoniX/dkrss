@@ -2,8 +2,13 @@
 class FavoritsController < InheritedResources::Base
   skip_before_filter :verify_authenticity_token, :only => [:add_favorit]
   def index
-    @favorits = current_user.favorits.paginate(:page => params[:page]).order("updated_at DESC")
+    if user_signed_in?
+      @favorits = current_user.favorits.paginate(:page => params[:page]).order("updated_at DESC")
+    else
+      redirect_to new_user_session_path
+    end
   end
+
 
   def show
     begin

@@ -1,7 +1,11 @@
 # coding: utf-8
 class SitesController < InheritedResources::Base
   def index
-    @sites = current_user.sites
+    if user_signed_in?
+      @sites = current_user.sites
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def delete
