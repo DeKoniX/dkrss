@@ -46,7 +46,7 @@ module FeedParse
         save_image = feed.feed_images.create! image: open(url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       rescue
       else
-        url = save_image.image.url
+        url = URI.join(APP_URL, save_image.image.url).to_s
         i.attributes['src'].value = url
         i.attributes['srcset'].remove if i.attributes['srcset']
       end
