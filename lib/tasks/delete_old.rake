@@ -2,7 +2,7 @@
 namespace :delete_old do
   desc "Удаление очень старых записей"
   task delete: :environment do
-    now = Time.now
+    now = Time.current
     old = now - 3.month
     # old = now - 3.week
 

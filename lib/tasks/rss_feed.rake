@@ -4,7 +4,7 @@ namespace :rss_feed do
     #Site.create! name: 'Lifehacker.ru', url: 'http://lifehacker.ru/feed/'
     ####
     require 'open-uri'
-    puts "#{Time.now}"
+    puts "#{Time.current}"
     Site.all.each do |site|
       prop = false
       p site.name
@@ -13,13 +13,13 @@ namespace :rss_feed do
       begin
         rss = SimpleRSS.parse open(site.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       rescue
-        puts "ERR, #{Time.now}, #{site.name}, #{site.url}"
+        puts "ERR, #{Time.current}, #{site.name}, #{site.url}"
         prop = true
       end
       if !prop
         rss.items.each do |item|
           if find_item(item, site)
-            date = Time.now
+            date = Time.current
             p item.title.force_encoding("UTF-8")
             p item.link.force_encoding("UTF-8")
             unless item.description == nil

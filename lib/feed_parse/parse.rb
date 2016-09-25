@@ -4,13 +4,13 @@ module FeedParse
     begin
       rss = SimpleRSS.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
     rescue
-      puts "ERR, #{Time.now}, #{site.name}, #{site.url}"
+      puts "ERR, #{Time.current}, #{site.name}, #{site.url}"
       prop = true
     end
     unless prop
       rss.items.each do |item|
         next unless find_item(item, site)
-        date = Time.now
+        date = Time.current
         title = HTMLEntities.new.decode item.title.force_encoding('UTF-8')
         unless item.description.nil?
           description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
