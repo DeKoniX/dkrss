@@ -17,6 +17,11 @@ img {
   background-color: #211C25;
 }
 
-#feed_body {
-  contain: content;
+#description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: pre-line;
+  height: auto;
+  max-height: 600px;
 }
