@@ -28,7 +28,7 @@ group :default do
   gem 'russian'
   gem 'sass-rails'
   gem 'sidekiq'
-  gem 'simple-rss'
+  # gem 'simple-rss'
   gem 'simple_form'
   gem 'sqlite3'
   gem 'turbolinks', '~> 5.0.0.beta'

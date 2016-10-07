@@ -4,6 +4,7 @@ class GetRss
   include FeedParse
 
   sidekiq_options queue: 'rss'
+  sidekiq_options retry: false
 
   def perform(site_id)
     site = Site.find site_id

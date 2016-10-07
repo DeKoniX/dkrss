@@ -1,8 +1,10 @@
 module FeedParse
   def parse_rss(site)
+    require 'rss'
     prop = false
     begin
-      rss = SimpleRSS.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      rss = RSS::Parser.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      # rss = SimpleRSS.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
     rescue
       puts "ERR, #{Time.current}, #{site.name}, #{site.url}"
       prop = true
@@ -10,17 +12,18 @@ module FeedParse
     unless prop
       rss.items.each do |item|
         next unless find_item(item, site)
-        date = Time.current
-        title = HTMLEntities.new.decode item.title.force_encoding('UTF-8')
-        unless item.description.nil?
-          description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
-        end
-        if item.updated
-          date = item.updated
-        elsif item.pubDate
-          date = item.pubDate
-        end
-        feed = site.feeds.create! title: title, url: item.link, description: description, date: date
+        # date = Time.current
+        # title = HTMLEntities.new.decode item.title.force_encoding('windows-1251')
+        # unless item.description.nil?
+        #   item.description = item.description.force_encoding('windows-1251')
+        #   description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
+        # end
+        # if item.updated
+        #   date = item.updated
+        # elsif item.pubDate
+        #   date = item.pubDate
+        # end
+        feed = site.feeds.create! title: item.title, url: item.link, description: item.description, date: item.date
         go_img(feed, false)
         GetFeed.perform_async(feed.id)
       end

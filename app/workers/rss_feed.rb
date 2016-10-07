@@ -4,6 +4,7 @@ class RssFeed
   include FeedParse
 
   sidekiq_options queue: 'rss'
+  sidekiq_options retry: false
 
   def perform(sites = nil)
     if sites.nil?

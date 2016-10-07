@@ -4,6 +4,7 @@ class GetFavorit
   include FeedParse
 
   sidekiq_options queue: 'favorits'
+  sidekiq_options retry: false
 
   def perform(favorit_id)
     favorit = Favorit.find favorit_id
