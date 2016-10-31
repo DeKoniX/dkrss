@@ -19,8 +19,13 @@ module FeedParse
         site.save!
       end
       rss.entries.each do |item|
-        next unless find_item(item, site)
-        feed = site.feeds.create!(title: item.title, url: item.entry_id, description: item.summary, date: item.published)
+        item_url = if item.entry_id.nil?
+                     item.url
+                   else
+                     item.entry_id
+                   end
+        next unless find_item(item_url, site)
+        feed = site.feeds.create!(title: item.title, url: item_url, description: item.summary, date: item.published)
         go_img(feed, false)
         GetFeed.perform_async(feed.id)
       end
@@ -134,8 +139,8 @@ module FeedParse
     end
   end
 
-  def find_item(item, site)
-    return false if site.feeds.find_by url: item.url
+  def find_item(url, site)
+    return false if site.feeds.find_by url: url
 
     true
   end
