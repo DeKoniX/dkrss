@@ -1,32 +1,47 @@
 module FeedParse
   def parse_rss(site)
-    require 'rss'
+    # require 'rss'
+    require 'feedjira'
     prop = false
     begin
-      rss = RSS::Parser.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      # rss = RSS::Parser.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
       # rss = SimpleRSS.parse open(site.url, 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+      rss = Feedjira::Feed.fetch_and_parse site.url
     rescue
       puts "ERR, #{Time.current}, #{site.name}, #{site.url}"
+      site.error = true
+      site.save!
       prop = true
     end
     unless prop
-      rss.items.each do |item|
+      if site == true
+        site.error = false
+        site.save!
+      end
+      rss.entries.each do |item|
         next unless find_item(item, site)
-        # date = Time.current
-        # title = HTMLEntities.new.decode item.title.force_encoding('windows-1251')
-        # unless item.description.nil?
-        #   item.description = item.description.force_encoding('windows-1251')
-        #   description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
-        # end
-        # if item.updated
-        #   date = item.updated
-        # elsif item.pubDate
-        #   date = item.pubDate
-        # end
-        feed = site.feeds.create! title: item.title, url: item.link, description: item.description, date: item.date
+        feed = site.feeds.create!(title: item.title, url: item.entry_id, description: item.summary, date: item.published)
         go_img(feed, false)
         GetFeed.perform_async(feed.id)
       end
+
+      # rss.items.each do |item|
+      #   next unless find_item(item, site)
+      #   # date = Time.current
+      #   # title = HTMLEntities.new.decode item.title.force_encoding('windows-1251')
+      #   # unless item.description.nil?
+      #   #   item.description = item.description.force_encoding('windows-1251')
+      #   #   description = HTMLEntities.new.decode item.description.force_encoding('UTF-8')
+      #   # end
+      #   # if item.updated
+      #   #   date = item.updated
+      #   # elsif item.pubDate
+      #   #   date = item.pubDate
+      #   # end
+      #   feed = site.feeds.create! title: item.title, url: item.link, description: item.description, date: item.date
+      #   go_img(feed, false)
+      #   GetFeed.perform_async(feed.id)
+      # end
     end
   end
 
@@ -120,10 +135,8 @@ module FeedParse
   end
 
   def find_item(item, site)
-    if site.feeds.find_by url: item.link
-      return false
-    else
-      return true
-    end
+    return false if site.feeds.find_by url: item.url
+
+    true
   end
 end

@@ -3,12 +3,13 @@ source 'https://rubygems.org'
 group :assets do
   gem 'coffee-rails'
   gem 'jbuilder'
-  gem 'libv8'
+  # gem 'libv8'
   # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier'
 end
 
 group :default do
+  # gem 'simple-rss'
   gem 'addressable'
   gem 'airbrake'
   gem 'babosa'
@@ -16,6 +17,7 @@ group :default do
   gem 'bootstrap-will_paginate'
   gem 'carrierwave'
   gem 'devise'
+  gem 'feedjira'
   gem 'friendly_id'
   gem 'htmlentities'
   gem 'inherited_resources'
@@ -28,7 +30,6 @@ group :default do
   gem 'russian'
   gem 'sass-rails'
   gem 'sidekiq'
-  # gem 'simple-rss'
   gem 'simple_form'
   gem 'sqlite3'
   gem 'turbolinks', '~> 5.0.0.beta'
