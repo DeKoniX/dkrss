@@ -42,56 +42,56 @@ namespace :rss_feed do
     end
   end
 
-  def go_img(feed)
-    require 'open-uri'
-    doc = Nokogiri::HTML feed.body
-    img = doc.search('img')
-    img.each do |i|
-      image = i.attributes['data-original']
-      if image == nil
-        url = i.attributes['src']
-      else
-        url = image.value
-      end
-      begin
-        save_image = feed.feed_images.create! image: open(url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
-      rescue
-        p 'ASD'
-      else
-        url = save_image.image.url
-        i.attributes['src'].value = url
-      end
-    end
-    feed.body = doc.to_html
-    feed.save!
-  end
-
-  def go_body(feed)
-    require 'open-uri'
-    f = ['article', 'div#content', 'div.content', 'div.yab-article']
-    unless feed.body
-      feed.body = ''
-      doc = open(feed.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
-      doc = doc.read
-      doc.encode('utf-8')
-      doc = Nokogiri::HTML doc
-      f.each do |fi|
-        d = doc.search(fi)
-        if d.to_s != ''
-          feed.body = d.to_s
-          break
-        end
-      end
-      feed.save!
-    end
-  end
-
-  def find_item(item, site)
-    site.feeds.all.each do |feed|
-      if item.link == feed.url
-        return false
-      end
-    end
-    return true
-  end
+  # def go_img(feed)
+  #   require 'open-uri'
+  #   doc = Nokogiri::HTML feed.body
+  #   img = doc.search('img')
+  #   img.each do |i|
+  #     image = i.attributes['data-original']
+  #     if image == nil
+  #       url = i.attributes['src']
+  #     else
+  #       url = image.value
+  #     end
+  #     begin
+  #       save_image = feed.feed_images.create! image: open(url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+  #     rescue
+  #       p 'ASD'
+  #     else
+  #       url = save_image.image.url
+  #       i.attributes['src'].value = url
+  #     end
+  #   end
+  #   feed.body = doc.to_html
+  #   feed.save!
+  # end
+  #
+  # def go_body(feed)
+  #   require 'open-uri'
+  #   f = ['article', 'div#content', 'div.content', 'div.yab-article']
+  #   unless feed.body
+  #     feed.body = ''
+  #     doc = open(feed.url, "User-Agent" => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0')
+  #     doc = doc.read
+  #     doc.encode('utf-8')
+  #     doc = Nokogiri::HTML doc
+  #     f.each do |fi|
+  #       d = doc.search(fi)
+  #       if d.to_s != ''
+  #         feed.body = d.to_s
+  #         break
+  #       end
+  #     end
+  #     feed.save!
+  #   end
+  # end
+  #
+  # def find_item(item, site)
+  #   site.feeds.all.each do |feed|
+  #     if item.link == feed.url
+  #       return false
+  #     end
+  #   end
+  #   return true
+  # end
 end

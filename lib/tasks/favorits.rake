@@ -25,4 +25,19 @@ namespace :favorits do
     end
   end
 
+  desc "Return favorits img"
+  task return: :environment do
+    require './lib/feed_parse/parse'
+    include FeedParse
+
+    Favorit.all.each do |favorit|
+      begin
+        go_body(favorit)
+        go_img(favorit)
+      rescue
+        puts "ERR: #{favorit.id}, #{favorit.name}"
+      end
+    end
+  end
+
 end
