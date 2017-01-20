@@ -12,6 +12,7 @@
 #  updated_at  :datetime
 #  user_id     :integer
 #  slug        :string(255)
+#  tag_id      :integer
 #
 
 class Favorit < ActiveRecord::Base

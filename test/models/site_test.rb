@@ -9,6 +9,7 @@
 #  updated_at :datetime
 #  user_id    :integer
 #  slug       :string(255)
+#  error      :boolean          default(FALSE), not null
 #
 
 require 'test_helper'

@@ -16,6 +16,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  rsskey                 :string(255)
+#  time_zone              :string           default("Moscow"), not null
 #
 
 class User < ActiveRecord::Base

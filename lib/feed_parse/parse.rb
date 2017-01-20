@@ -14,7 +14,7 @@ module FeedParse
       prop = true
     end
     unless prop
-      if site == true
+      if site.error == true
         site.error = false
         site.save!
       end

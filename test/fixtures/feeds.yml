@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  title       :string(255)
-#  url         :text(255)
+#  url         :text
 #  description :text
 #  body        :text
 #  site_id     :integer
