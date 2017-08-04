@@ -19,12 +19,9 @@ module FeedParse
         site.save!
       end
       rss.entries.each do |item|
-        item_url = if item.entry_id.nil?
-                     item.url
-                   else
-                     item.entry_id
-                   end
+        item_url = item.url
         next unless find_item(item_url, site)
+
         feed = site.feeds.create!(title: item.title, url: item_url, description: item.summary, date: item.published)
         go_img(feed, false)
         GetFeed.perform_async(feed.id)
