@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang='ru'>
   <head>
-    <title><%= my_title %></title>
+    <%= display_meta_tags site: 'DKRss' %>
+    <!-- <title><%= my_title %></title>
+         <meta name="description" content="{{ .Description }}" />
+         <meta property="og:description" content="{{ .Description }}" /> {{ end }} {{ if ne .ImageURL "" }}
+         <meta property="og:image" content="{{ .ImageURL }}" />
+         <link rel="image_src" href="{{ .ImageURL }}" /> {{ end }}
+         <meta property="og:url" content="{{ .URL }}" />
+         <meta property="og:title" content="{{ .Title }}" /> -->
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>

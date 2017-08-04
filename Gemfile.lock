@@ -39,9 +39,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    airbrake (4.3.1)
-      builder
-      multi_json
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -137,6 +134,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.4.1)
+      actionpack (>= 3.2.0, < 5.2)
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_magick (4.3.5)
@@ -277,7 +276,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgresql-adapter
   addressable
-  airbrake
   annotate
   babosa
   bootstrap-sass
@@ -295,6 +293,7 @@ DEPENDENCIES
   inherited_resources
   jbuilder
   jquery-rails
+  meta-tags
   mini_magick
   newrelic_rpm
   nokogiri

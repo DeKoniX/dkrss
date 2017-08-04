@@ -1,14 +1,19 @@
-<% @title = "Избранное" %>
 <h1>Ваше избранное</h1>
 <%= link_to "Добавить новое", new_favorit_path %>
-<% @favorits.each do |favorit| %>
-  <hr>
-  <h3><%= link_to favorit.name, favorit_path(favorit) %></h3>
-  <p><%= link_to favorit.url, favorit.url %></p>
-  <div id='description'><%= raw favorit.description %></div>
-  <p>
-    <%= link_to "Редактировать", edit_favorit_path(favorit) %>
-    <%= link_to "Удалить", favorit, method: :delete %>
-  </p>
-<% end %>
-<%= will_paginate @favorits %>
+    <% @favorits.each do |favorit| %>
+        <hr>
+        <h3>
+            <%= link_to favorit.name, favorit_path(favorit) %>
+        </h3>
+        <p>
+            <%= link_to favorit.url, favorit.url %>
+        </p>
+        <div id='description'>
+            <%= raw favorit.description %>
+        </div>
+        <p>
+            <%= link_to "Редактировать", edit_favorit_path(favorit) %>
+                <%= link_to "Удалить", favorit, method: :delete %>
+        </p>
+        <% end %>
+            <%= will_paginate @favorits %>

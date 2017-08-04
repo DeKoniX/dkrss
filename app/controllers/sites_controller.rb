@@ -3,17 +3,18 @@ class SitesController < InheritedResources::Base
   def index
     if user_signed_in?
       @sites = current_user.sites
+      set_meta_tags title: 'Сайты', reverse: true
     else
       redirect_to new_user_session_path
     end
   end
 
   def delete
-    delete!(:notice => "Удален rss поток #{@site.name}")
+    delete!(notice: "Удален rss поток #{@site.name}")
   end
-  
+
   def create
-    create!{ sites_path }
+    create! { sites_path }
     @site.user_id = current_user.id
     @site.save!
     GetRss.perform_async(@site.id)
@@ -22,9 +23,7 @@ class SitesController < InheritedResources::Base
 
   def edit
     @site = Site.find(params[:id])
-    unless @site.user_id == current_user.id
-      redirect_to sites_path
-    end
+    redirect_to sites_path unless @site.user_id == current_user.id
   end
 
   def get_rss
@@ -48,11 +47,11 @@ class SitesController < InheritedResources::Base
     @sites = @user.sites
 
     respond_to do |format|
-      format.opml { render :layout => false }
+      format.opml { render layout: false }
     end
   end
 
   def permitted_params
-      params.permit(:site => [:name, :url])
+    params.permit(site: [:name, :url])
   end
 end

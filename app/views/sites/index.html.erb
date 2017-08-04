@@ -1,21 +1,28 @@
-<% @title = "Сайты" %>
 <%= link_to "Добавить новый сайт в список", new_site_path %>
-<table class="table table-striped">
-  <tr>
-    <th>Сайт</th>
-    <th>url</th>
-    <th colspan="2"></th>
-  </tr>
-  <% @sites.sort_by(&:name).each do |site| %>
-    <% if site.error %>
-      <tr id="danger">
-    <% else %>
-      <tr>
-    <% end %>
-        <td> <%= link_to site.name, site_feeds_path(site) %> </td>
-        <td> <%= link_to site.url, site.url %> </td>
-        <td> <%= link_to "Редактировать", edit_site_path(site) %> </td>
-        <td> <%= link_to "Удалить", site, method: :delete %> </td>
-      </tr>
-  <% end %>
-</table>
+    <table class="table table-striped">
+        <tr>
+            <th>Сайт</th>
+            <th>url</th>
+            <th colspan="2"></th>
+        </tr>
+        <% @sites.sort_by(&:name).each do |site| %>
+            <% if site.error %>
+                <tr id="danger">
+                    <% else %>
+                        <tr>
+                            <% end %>
+                                <td>
+                                    <%= link_to site.name, site_feeds_path(site) %>
+                                </td>
+                                <td>
+                                    <%= link_to site.url, site.url %>
+                                </td>
+                                <td>
+                                    <%= link_to "Редактировать", edit_site_path(site) %>
+                                </td>
+                                <td>
+                                    <%= link_to "Удалить", site, method: :delete %>
+                                </td>
+                        </tr>
+                        <% end %>
+    </table>

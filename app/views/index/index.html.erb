@@ -4,14 +4,14 @@
     <% site = Site.find feed.site_id %>
     <p>Сайт: <%= link_to site.name, site_feeds_path(site) %></p>
     <%- if feed.body.nil? %>
-      <p><%= feed.title %>  
+      <p><%= feed.title %>
     <%- else %>
-      <p><%= link_to feed.title, site_feed_path(site, feed) %> 
+      <p><%= link_to feed.title, site_feed_path(site, feed) %>
     <%- end %>
     <%= link_to "(#{feed.url})", feed.url %></p>
     <p><%= link_to 'Добавить в избранное', favorit_add_path(feed_id: feed.id), method: :post %></p>
     <div id='description'><%= raw feed.description %></div>
-    
+
     ------
     <p><%= I18n.l feed.date %></p>
     <hr>

@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20161031173722) do
   enable_extension "plpgsql"
 
   create_table "favorits", force: :cascade do |t|
-    t.string   "url",         limit: 255,                 null: false
-    t.string   "name",        limit: 255,                 null: false
+    t.string   "url",                         null: false
+    t.string   "name",                        null: false
     t.text     "body"
     t.text     "description"
-    t.boolean  "link",                    default: false
+    t.boolean  "link",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "slug",        limit: 255
+    t.string   "slug"
   end
 
   add_index "favorits", ["slug"], name: "index_favorits_on_slug", unique: true, using: :btree
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20161031173722) do
   end
 
   create_table "feeds", force: :cascade do |t|
-    t.string   "title",       limit: 255
+    t.string   "title"
     t.text     "url"
     t.text     "description"
     t.text     "body"
@@ -47,39 +47,39 @@ ActiveRecord::Schema.define(version: 20161031173722) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date"
-    t.string   "slug",        limit: 255
+    t.string   "slug"
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree
 
   create_table "sites", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "url",        limit: 255
+    t.string   "name"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "slug",       limit: 255
-    t.boolean  "error",                  default: false, null: false
+    t.string   "slug"
+    t.boolean  "error",      default: false, null: false
   end
 
   add_index "sites", ["slug"], name: "index_sites_on_slug", unique: true, using: :btree
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",       null: false
-    t.string   "encrypted_password",     limit: 255, default: "",       null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "",       null: false
+    t.string   "encrypted_password",     default: "",       null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,        null: false
+    t.integer  "sign_in_count",          default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rsskey",                 limit: 255
-    t.string   "time_zone",                          default: "Moscow", null: false
+    t.string   "rsskey"
+    t.string   "time_zone",              default: "Moscow", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

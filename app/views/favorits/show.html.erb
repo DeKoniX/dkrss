@@ -1,4 +1,3 @@
-<% @title = @favorit.name %>
 <h2><%= link_to @favorit.name, @favorit.url %></h2>
 <%= link_to "Удалить статью", @favorit, method: :delete %>
 <% if @favorit.body == nil %>

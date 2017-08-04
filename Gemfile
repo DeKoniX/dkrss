@@ -11,7 +11,6 @@ end
 group :default do
   # gem 'simple-rss'
   gem 'addressable'
-  gem 'airbrake'
   gem 'babosa'
   gem 'bootstrap-sass'
   gem 'bootstrap-will_paginate'
@@ -22,6 +21,7 @@ group :default do
   gem 'htmlentities'
   gem 'inherited_resources'
   gem 'jquery-rails'
+  gem 'meta-tags'
   gem 'mini_magick'
   gem 'newrelic_rpm'
   gem 'nokogiri'

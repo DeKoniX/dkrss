@@ -1,4 +1,3 @@
-<% @title = @feed.title %>
 <h4><%= link_to @site.name, site_feeds_path(@site) %> -- <%= link_to @feed.title, @feed.url %></h4>
 <% if user_signed_in? %>
   <h5><%= link_to 'Добавить в избранное', favorit_add_path(feed_id: @feed.id), method: :post %></h5>
